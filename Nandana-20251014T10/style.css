@@ -1,0 +1,268 @@
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #333;
+  background-color: #f5f5f5;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.75em 1.5em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #fa7268;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #e6635c;
+}
+
+.btn-secondary {
+  background-color: #333;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background-color: #555;
+}
+
+/* Header */
+.site-header {
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 0;
+}
+
+.logo h1 {
+  color: #fa7268;
+  font-size: 1.8em;
+}
+
+.site-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1em;
+}
+
+.site-nav ul li a {
+  padding: 0.5em 1em;
+  color: #333;
+  font-weight: bold;
+}
+
+.site-nav ul li a:hover {
+  color: #fa7268;
+}
+
+/* Hero Section */
+.hero {
+  background: url('images/hero.jpg') center/cover no-repeat;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.hero .hero-content {
+  text-align: center;
+  width: 100%;
+}
+
+.hero h2 {
+  font-size: 3em;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+}
+
+.hero p {
+  font-size: 1.2em;
+  margin: 1em 0;
+}
+
+.hero .btn {
+  font-size: 1em;
+}
+
+/* Sections common style */
+.section {
+  padding: 60px 0;
+  background-color: #fff;
+}
+
+.services-section, .about-section {
+  background-color: #f9f9f9;
+}
+
+.section h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.5em;
+  color: #fa7268;
+}
+
+/* Services Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.service {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.service h3 {
+  margin: 20px 0 10px;
+  color: #333;
+}
+
+.service p {
+  padding: 0 20px 20px;
+  color: #666;
+}
+
+.service:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Gallery */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+}
+
+/* Booking Form */
+.booking-form {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.75em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #fa7268;
+}
+
+/* About & Contact */
+.about-section p,
+.contact-section .contact-details {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.1em;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Contact Section */
+.contact-section .contact-details p {
+  margin: 10px 0;
+}
+
+/* Footer */
+.site-footer {
+  background-color: #333;
+  color: #fff;
+  padding: 30px 0;
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+  font-size: 0.9em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero h2 {
+    font-size: 2.2em;
+  }
+
+  .site-nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+  }
+
+  .site-nav ul li a {
+    padding: 0.5em;
+  }
+}

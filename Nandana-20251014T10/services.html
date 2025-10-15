@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pawfect Groomers - Services</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Container for the 4 tabs */
+    .services-tabs {
+      display: flex;
+      flex-wrap: wrap; /* Wrap on smaller screens */
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    /* Each service tab */
+    .service-tab {
+      flex: 1 1 500px; /* Grow, shrink, base width */
+      max-width: 250px;
+      background: #fafafa;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      padding: 15px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .service-tab:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .service-tab img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px 8px 0 0;
+      margin-bottom: 10px;
+    }
+
+    .service-tab h3 {
+      margin: 10px 0;
+      font-size: 1.1rem;
+    }
+
+    .service-tab p {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .service-tab .btn {
+      margin-bottom: 10px;
+      padding: 8px 15px;
+      font-size: 0.95rem;
+    }
+
+    /* Back button */
+    .back-btn {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <section id="services" class="section" style="background: linear-gradient(to bottom, #fff, #f9f9f9); color: black;">
+    <nav class="navbar">
+      <img src="logo.png" alt="Pawfect Groomers Logo">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h2>Our Services</h2>
+      
+      <!-- Tabs container -->
+      <div class="services-tabs">
+        <div class="service-tab">
+          <img src="images/dog_bath.png" alt="Bath and Brush">
+          <h3>🛁 Bath & Brush</h3>
+          <p>Gentle shampoo, conditioning, and a full brush-out for a shiny coat.</p>
+          <a href="booking.html" class="btn">Book Now</a>
+        </div>
+        <div class="service-tab">
+          <img src="images/haircut.jpg" alt="Haircut & Styling">
+          <h3>✂️ Haircut & Styling</h3>
+          <p>Breed-specific cuts and trendy styles to suit your pet’s personality.</p>
+          <a href="booking.html" class="btn">Book Now</a>
+        </div>
+        <div class="service-tab">
+          <img src="images/nail_cut.jpg" alt="Nail Trimming">
+          <h3>🐾 Nail Trimming</h3>
+          <p>Safe trimming and filing to keep paws comfortable and healthy.</p>
+          <a href="booking.html" class="btn">Book Now</a>
+        </div>
+        <div class="service-tab">
+          <img src="images/treatment.jpg" alt="Ear Cleaning & More">
+          <h3>🐶 Ears, Flea & Tick Treatment</h3>
+          <p>Professional treatments for hygiene and to combat pests.</p>
+          <a href="booking.html" class="btn">Book Now</a>
+        </div>
+      </div>
+
+      <a href="index.html" class="btn back-btn">⬅ Back to Home</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Pawfect Groomers. All rights reserved.</p>
+  </footer>
+</body>
+</html>

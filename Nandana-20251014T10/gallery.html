@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pawfect Groomers - Gallery</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Remove body margin */
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Fullscreen section */
+    #gallery {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      color: white;
+    }
+
+    /* Background video */
+    #gallery video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    /* Dark overlay */
+    #gallery .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: -1;
+    }
+
+    /* Container */
+    #gallery .container {
+      position: relative;
+      z-index: 1;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 3rem;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+    }
+
+    /* Gallery grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 25px;
+      justify-items: center;
+      margin-top: 20px;
+    }
+
+    .gallery-grid .card {
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+
+    .gallery-grid .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+    }
+
+    /* Hover effects */
+    .gallery-grid .card:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-grid .card:hover {
+      box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+    }
+
+    /* Back button */
+    .btn.back-btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 25px;
+      background-color: #ff9800;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: background-color 0.3s;
+    }
+
+    .btn.back-btn:hover {
+      background-color: #e68900;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      color: white;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .navbar a.active {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .site-footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(0,0,0,0.7);
+      color: white;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .gallery-grid .card img {
+        height: 220px;
+      }
+
+      h2 {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-grid .card img {
+        height: 180px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section id="gallery" class="section">
+    <video autoplay muted loop>
+      <source src="gallery.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+
+    <nav class="navbar">
+      <img src="logo.png" alt="Pawfect Groomers Logo" height="50">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <div class="card"><img src="images/groom.jpg" alt="Pet Groomed Sample 1"></div>
+        <div class="card"><img src="images/grooming.png" alt="Pet Groomed Sample 2"></div>
+        <div class="card"><img src="images/catss.jpg" alt="Pet Groomed Sample 3"></div>
+      </div>
+      <a href="index.html" class="btn back-btn">⬅ Back to Home</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Pawfect Groomers. All rights reserved.</p>
+  </footer>
+</body>
+</html>
