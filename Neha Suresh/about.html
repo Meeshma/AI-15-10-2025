@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | Pierce It Right</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      background: #111;
+      color: #fff;
+      padding: 20px 0;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav ul li a:hover {
+      color: #ff4081;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    /* About Section */
+    .about {
+      padding: 50px 0;
+      background: #fff;
+    }
+
+    .about p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #444;
+      max-width: 800px;
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    footer {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Chatbot Styles */
+    #chatbot-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-family: Arial, sans-serif;
+      z-index: 9999;
+    }
+
+    #chatbot-btn {
+      background: #ff4081;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+      transition: background 0.3s;
+    }
+
+    #chatbot-btn:hover {
+      background: #e73370;
+    }
+
+    #chatbot-box {
+      display: none;
+      position: absolute;
+      bottom: 80px;
+      right: 0;
+      width: 300px;
+      max-height: 400px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    #chatbot-header {
+      background: #ff4081;
+      color: #fff;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #chatbot-messages {
+      padding: 10px;
+      height: 250px;
+      overflow-y: auto;
+      font-size: 14px;
+    }
+
+    #chatbot-input {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+
+    #chatbot-input input {
+      flex: 1;
+      border: none;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    #chatbot-input button {
+      background: #ff4081;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+
+    #chatbot-input button:hover {
+      background: #e73370;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h1>Pierce It Right</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>At Pierce It Right, we combine artistic flair with strict safety standards. Our team of trained professionals ensures a comfortable experience in a clean, modern studio.</p>
+      <p>With years of experience, certified piercers, and a strict commitment to hygiene and aftercare, we’re here to help you feel confident in every decision you make — whether it’s your first piercing or your tenth.</p>
+      <p>We use only high-quality, hypoallergenic jewelry and sterile equipment for every procedure. Your comfort, safety, and style are our top priorities.</p>
+      <p>Come in, ask questions, and let’s create something beautiful together.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Pierce It Right. All rights reserved.</p>
+  </footer>
+
+  <!-- Chatbot Button & Widget -->
+  <div id="chatbot-container">
+    <button id="chatbot-btn">💬</button>
+    <div id="chatbot-box">
+      <div id="chatbot-header">
+        <span>Chat with us</span>
+        <button id="chatbot-close">✖</button>
+      </div>
+      <div id="chatbot-messages">
+        <p><strong>Bot:</strong> Hi! How can I help you today?</p>
+      </div>
+      <div id="chatbot-input">
+        <input type="text" id="chatbot-text" placeholder="Type your message..." />
+        <button id="chatbot-send">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const chatbotBtn = document.getElementById("chatbot-btn");
+    const chatbotBox = document.getElementById("chatbot-box");
+    const chatbotClose = document.getElementById("chatbot-close");
+    const chatbotSend = document.getElementById("chatbot-send");
+    const chatbotText = document.getElementById("chatbot-text");
+    const chatbotMessages = document.getElementById("chatbot-messages");
+
+    chatbotBtn.addEventListener("click", () => {
+      chatbotBox.style.display = "flex";
+    });
+
+    chatbotClose.addEventListener("click", () => {
+      chatbotBox.style.display = "none";
+    });
+
+    chatbotSend.addEventListener("click", sendMessage);
+    chatbotText.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") sendMessage();
+    });
+
+    function sendMessage() {
+      const msg = chatbotText.value.trim();
+      if (msg === "") return;
+
+      const userMsg = document.createElement("p");
+      userMsg.innerHTML = `<strong>You:</strong> ${msg}`;
+      chatbotMessages.appendChild(userMsg);
+
+      const botMsg = document.createElement("p");
+      botMsg.innerHTML = `<strong>Bot:</strong> Thanks for your message! We'll get back to you soon.`;
+      chatbotMessages.appendChild(botMsg);
+
+      chatbotText.value = "";
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pierce It Right</title>
+
+  <!-- AOS Animation Library -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --white: #ffffff;
+      --black: #000000;
+      --accent: #ff4081;
+      --accent-2: #ff80ab;
+      --muted: #aaaaaa;
+      --glass-border: rgba(255,255,255,0.1);
+      --neon-shadow: 0 0 12px rgba(255,64,129,0.7), 0 0 24px rgba(255,64,129,0.5);
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg,#0b0b0d,#000);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* === Header Hero Section === */
+    header {
+      text-align: center;
+      padding: 100px 20px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content:'';
+      position:absolute;
+      inset:0;
+      background: radial-gradient(circle, rgba(255,64,129,0.1), transparent 70%);
+      z-index:0;
+      animation: rotateBG 30s linear infinite;
+    }
+
+    @keyframes rotateBG {0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+
+    header h1 {
+      font-size: 3rem;
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      position: relative;
+      z-index:1;
+      animation: neonFade 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes neonFade {
+      0% { text-shadow: 0 0 4px rgba(255,64,129,0.4), 0 0 10px rgba(255,64,129,0.3);}
+      100% { text-shadow: var(--neon-shadow);}
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+      position: relative;
+      z-index:1;
+    }
+
+    /* === Section Titles === */
+    .section-title {
+      display:flex;
+      flex-direction: column;
+      align-items:center;
+      gap:8px;
+      text-align:center;
+      margin-bottom:40px;
+    }
+
+    .section-title h2 {
+      font-size:2.2rem;
+      color:var(--accent);
+      text-transform: uppercase;
+      letter-spacing:1px;
+      position: relative;
+    }
+
+    .section-title h2::after {
+      content:'';
+      width:60px;
+      height:3px;
+      background:var(--accent);
+      display:block;
+      margin:6px auto 0;
+      border-radius:2px;
+    }
+
+    .subtitle {
+      color:var(--muted);
+      font-size:14px;
+      max-width:500px;
+    }
+
+    /* === Services Grid === */
+    .services-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:30px;
+      margin-top:20px;
+    }
+
+    .service {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:20px;
+      padding:30px 20px;
+      border:1px solid var(--glass-border);
+      transition:transform .45s cubic-bezier(.2,.9,.2,1), box-shadow .45s;
+      transform-origin:center;
+      will-change:transform;
+      text-align:center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service::before {
+      content:'';
+      position:absolute;
+      inset:0;
+      border-radius:20px;
+      background: linear-gradient(45deg,var(--accent),var(--accent-2));
+      opacity:0;
+      transition:opacity 0.4s;
+      z-index:0;
+    }
+
+    .service:hover::before { opacity:0.1; }
+
+    .service:hover {
+      transform:translateY(-16px) rotateX(5deg);
+      box-shadow: 0 24px 60px rgba(255,64,129,0.35);
+    }
+
+    .service .icon {
+      background: linear-gradient(135deg,var(--accent),var(--accent-2));
+      padding:16px;
+      border-radius:50%;
+      width:64px;
+      height:64px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-weight:700;
+      margin:0 auto 16px;
+      font-size:28px;
+      box-shadow:0 0 16px rgba(255,64,129,0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
+      z-index:1;
+      position: relative;
+    }
+
+    .service:hover .icon {
+      transform: scale(1.2) rotate(10deg);
+      box-shadow: 0 0 28px rgba(255,64,129,0.8), 0 0 40px rgba(255,64,129,0.5);
+    }
+
+    .service h3 {
+      margin:12px 0 10px;
+      font-size:1.2rem;
+      color:var(--white);
+      z-index:1;
+      position: relative;
+    }
+
+    .service p {
+      color:var(--muted);
+      font-size:14px;
+      z-index:1;
+      position: relative;
+    }
+
+    /* === Pricing Section === */
+    .pricing-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:25px;
+      margin-top:20px;
+    }
+
+    .pricing-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:16px;
+      padding:25px;
+      border:1px solid var(--glass-border);
+      text-align:center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(255,64,129,0.4);
+    }
+
+    .pricing-card h4 {
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .pricing-card .price {
+      font-size:1.5rem;
+      margin-bottom: 10px;
+      color:var(--white);
+    }
+
+    .pricing-card p {
+      font-size:14px;
+      color: var(--muted);
+    }
+
+    /* === FAQ Section === */
+    .faq {
+      max-width:800px;
+      margin:0 auto;
+    }
+
+    .faq-item {
+      background: rgba(255,255,255,0.02);
+      border-radius:12px;
+      margin-bottom:12px;
+      overflow:hidden;
+      border:1px solid var(--glass-border);
+    }
+
+    .faq-item button {
+      width:100%;
+      padding:16px;
+      font-size:16px;
+      color:var(--white);
+      background:none;
+      border:none;
+      text-align:left;
+      cursor:pointer;
+      outline:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .faq-item .answer {
+      padding:0 16px 16px;
+      display:none;
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    /* === CTA Button === */
+    .cta-btn {
+      display:inline-block;
+      margin-top:20px;
+      padding:14px 32px;
+      border-radius:50px;
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:#fff;
+      font-weight:600;
+      font-size:1rem;
+      text-decoration:none;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .cta-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(255,64,129,0.6),0 0 50px rgba(255,64,129,0.4);
+    }
+
+    footer {
+      text-align:center;
+      padding:50px 0 30px;
+      border-top:1px solid var(--glass-border);
+      color:var(--muted);
+      font-size:14px;
+      margin-top:60px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <header>
+    <h1>Pierce It Right</h1>
+    <p>Precision • Hygiene • Style</p>
+    <a href="#services" class="cta-btn">Book Your Piercing</a>
+  </header>
+
+  <!-- Services Section -->
+  <section id="services">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Our Services</h2>
+        <div class="subtitle">Professional piercing with premium jewelry & aftercare</div>
+      </div>
+
+      <div class="services-grid">
+        <div class="service" data-tilt data-aos="fade-up" data-aos-delay="100">
+          <div class="icon">👂</div>
+          <h3>Ear Piercing</h3>
+          <p>Lobe, cartilage, tragus, daith & more.</p>
+        </div>
+        <div class="service" data-tilt data-aos="fade-up" data-aos-delay="200">
+          <div class="icon">😊</div>
+          <h3>Facial Piercing</h3>
+          <p>Nose, septum, eyebrow, lips & medusa.</p>
+        </div>
+        <div class="service" data-tilt data-aos="fade-up" data-aos-delay="300">
+          <div class="icon">💎</div>
+          <h3>Body Piercing</h3>
+          <p>Navel, dermal, nipple, industrial, surface.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Pricing</h2>
+        <div class="subtitle">Transparent & competitive prices</div>
+      </div>
+
+      <div class="pricing-grid">
+        <div class="pricing-card" data-aos="fade-up" data-aos-delay="100">
+          <h4>Basic Ear</h4>
+          <div class="price">$20</div>
+          <p>Lobe & cartilage piercings with standard jewelry.</p>
+        </div>
+        <div class="pricing-card" data-aos="fade-up" data-aos-delay="200">
+          <h4>Advanced Facial</h4>
+          <div class="price">$35</div>
+          <p>Nose, septum, eyebrow & lip piercings.</p>
+        </div>
+        <div class="pricing-card" data-aos="fade-up" data-aos-delay="300">
+          <h4>Body & Special</h4>
+          <div class="price">$50+</div>
+          <p>Navel, nipple, dermal, surface & custom jewelry.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>FAQ</h2>
+        <div class="subtitle">Frequently Asked Questions</div>
+      </div>
+
+      <div class="faq">
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+          <button>Is piercing safe?<span>+</span></button>
+          <div class="answer">Yes, all our piercings are done with sterile equipment & expert hygienic procedures.</div>
+        </div>
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+          <button>Does it hurt?<span>+</span></button>
+          <div class="answer">Minimal discomfort. Our professionals use techniques to reduce pain.</div>
+        </div>
+        <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+          <button>How to care after piercing?<span>+</span></button>
+          <div class="answer">Clean with saline solution, avoid touching & follow aftercare instructions.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Pierce It Right. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+      max: 15,
+      speed: 800,
+      glare: true,
+      "max-glare": 0.3,
+      scale:1.05
+    });
+
+    AOS.init({
+      duration:1000,
+      once:true,
+      easing:'ease-in-out'
+    });
+
+    // FAQ toggle
+    const faqItems = document.querySelectorAll('.faq-item button');
+    faqItems.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling;
+        const plus = btn.querySelector('span');
+        answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        plus.textContent = plus.textContent === '+' ? '−' : '+';
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pierce It Right</title>
+  <style>
+    :root {
+      --white: #ffffff;
+      --black: #111111;
+      --pink: #ff4081;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--white);
+      color: var(--black);
+    }
+
+    header, footer, .services, .about, .contact {
+      background-color: var(--white);
+      color: var(--black);
+      padding: 20px 0;
+    }
+
+    h1, h2, h3 {
+      color: var(--black);
+    }
+
+    a {
+      color: var(--pink);
+      text-decoration: none;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: var(--black);
+      font-weight: bold;
+    }
+
+    .banner {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      overflow: hidden;
+    }
+
+    .banner video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .banner .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: var(--white);
+      text-align: center;
+      padding: 20px;
+    }
+
+    .banner h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .banner p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      background: var(--pink);
+      color: var(--white);
+      padding: 12px 24px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #e73370;
+    }
+
+    .service-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .service-item {
+      flex: 1 1 30%;
+      background: #f9f9f9;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+
+    .gallery-images {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .gallery-images img {
+      width: 30%;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    form button {
+      background: var(--pink);
+      color: var(--white);
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    footer {
+      text-align: center;
+      background-color: var(--white);
+      color: var(--black);
+      padding: 10px 0;
+    }
+
+    #chatbot-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-family: Arial, sans-serif;
+      z-index: 9999;
+    }
+
+    #chatbot-btn {
+      background: var(--pink);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+    }
+
+    #chatbot-box {
+      display: none;
+      position: absolute;
+      bottom: 80px;
+      right: 0;
+      width: 300px;
+      max-height: 400px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    #chatbot-header {
+      background: var(--pink);
+      color: #fff;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #chatbot-messages {
+      padding: 10px;
+      height: 250px;
+      overflow-y: auto;
+      font-size: 14px;
+    }
+
+    #chatbot-input {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+
+    #chatbot-input input {
+      flex: 1;
+      border: none;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    #chatbot-input button {
+      background: var(--pink);
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+    }
+
+    .about-video {
+      margin-top: 20px;
+    }
+
+    .about-video video {
+      width: 100%;
+      max-height: 400px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h1>Pierce It Right</h1>
+      <nav>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Banner -->
+  <section class="banner">
+    <video autoplay muted loop playsinline>
+      <source src="4.mp4" type="video/mp4">
+    </video>
+    <div class="overlay">
+      <h2>Express Yourself with Confidence</h2>
+      <p>Professional & hygienic piercings by certified experts</p>
+      <a href="#contact" class="btn">Book an Appointment</a>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="services">
+    <div class="container">
+      <h2>Our Services</h2>
+      <div class="service-list">
+        <div class="service-item">
+          <h3>Ear Piercing</h3>
+          <p>Lobe, cartilage, tragus, and more.</p>
+        </div>
+        <div class="service-item">
+          <h3>Facial Piercing</h3>
+          <p>Nose, septum, eyebrow, and lips.</p>
+        </div>
+        <div class="service-item">
+          <h3>Body Piercing</h3>
+          <p>Navel, dermal, nipple, and others.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>At Pierce It Right, we combine artistic flair with strict safety standards. Our team of trained professionals ensures a comfortable experience in a clean, modern studio.</p>
+      <p>We use high-quality, hypoallergenic jewelry and sterile tools. Your comfort, safety, and style are our top priorities. Whether it’s your first or tenth piercing — you're in great hands!</p>
+
+      <!-- About Video -->
+      <div class="about-video">
+        <video autoplay muted loop playsinline>
+          <source src="5.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="gallery">
+    <div class="container">
+      <h2>Gallery</h2>
+      <div class="gallery-images">
+        <img src="images/img1.jpg" alt="Example 1">
+        <img src="images/img2.jpg" alt="Example 2">
+        <img src="images/img3.jpg" alt="Example 3">
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <form>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Hi... how can we help you?" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+
+      <!-- Map -->
+      <div style="margin-top: 20px;">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0863704127263!2d-122.42183898466962!3d37.774929779759335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808e1a9d542f%3A0x7d6f0e3b8c9eafdf!2sPiercing%20Studio!5e0!3m2!1sen!2sus!4v1632923184380!5m2!1sen!2sus"
+          width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Pierce It Right. All rights reserved.</p>
+  </footer>
+
+  <!-- Chatbot -->
+  <div id="chatbot-container">
+    <button id="chatbot-btn">💬</button>
+    <div id="chatbot-box">
+      <div id="chatbot-header">
+        <span>Chat with us</span>
+        <button id="chatbot-close">✖</button>
+      </div>
+      <div id="chatbot-messages">
+        <p><strong>Bot:</strong> Hi! How can I help you today?</p>
+      </div>
+      <div id="chatbot-input">
+        <input type="text" id="chatbot-text" placeholder="Type your message...">
+        <button id="chatbot-send">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <img id="lightbox-img" src="">
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const chatbotBtn = document.getElementById("chatbot-btn");
+    const chatbotBox = document.getElementById("chatbot-box");
+    const chatbotClose = document.getElementById("chatbot-close");
+    const chatbotSend = document.getElementById("chatbot-send");
+    const chatbotText = document.getElementById("chatbot-text");
+    const chatbotMessages = document.getElementById("chatbot-messages");
+
+    chatbotBtn.addEventListener("click", () => chatbotBox.style.display = "flex");
+    chatbotClose.addEventListener("click", () => chatbotBox.style.display = "none");
+    chatbotSend.addEventListener("click", sendMessage);
+    chatbotText.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") sendMessage();
+    });
+
+    function getBotResponse(input) {
+      const msg = input.toLowerCase();
+      if (msg.includes("price")) return "Our piercings start from $25.";
+      if (msg.includes("open") || msg.includes("hours")) return "We’re open 10am to 8pm, Mon-Sat.";
+      if (msg.includes("location")) return "We are at 123 Style Street, Downtown.";
+      if (msg.includes("book")) return "You can book via the contact form or call us!";
+      return "Thank you! We'll reply shortly.";
+    }
+
+    function sendMessage() {
+      const msg = chatbotText.value.trim();
+      if (msg === "") return;
+      chatbotMessages.innerHTML += `<p><strong>You:</strong> ${msg}</p>`;
+      chatbotMessages.innerHTML += `<p><strong>Bot:</strong> ${getBotResponse(msg)}</p>`;
+      chatbotText.value = "";
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    // Lightbox
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    document.querySelectorAll('.gallery-images img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.style.display = "flex";
+      });
+    });
+    lightbox.addEventListener("click", () => lightbox.style.display = "none");
+  </script>
+
+</body>
+</html>

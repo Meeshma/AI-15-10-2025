@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Don Bosco Tech – Skilling India</title>
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      background-color: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #007BFF;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    nav ul li a:hover {
+      color: #007BFF;
+    }
+
+    .hero {
+      background: url('https://via.placeholder.com/1600x500?text=Don+Bosco+Tech+Banner') no-repeat center center/cover;
+      padding: 6rem 1rem;
+      text-align: center;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: auto;
+      margin-bottom: 2rem;
+    }
+
+    .hero .btn {
+      padding: 0.8rem 1.5rem;
+      background: #007BFF;
+      border: none;
+      color: white;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .hero .btn:hover {
+      background: #0056b3;
+    }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 3rem 1rem;
+      background-color: #f8f8f8;
+    }
+
+    .stat {
+      text-align: center;
+      min-width: 150px;
+    }
+
+    .stat .number {
+      font-size: 2rem;
+      color: #007BFF;
+      font-weight: bold;
+    }
+
+    .courses {
+      max-width: 1200px;
+      margin: auto;
+      padding: 3rem 1rem;
+    }
+
+    .courses h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .course-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .course-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .course-card:hover {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .course-card h3 {
+      color: #007BFF;
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+      background: #333;
+      color: #fff;
+      padding: 3rem 1rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .footer-col {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .footer-col h4 {
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-col ul li a {
+      color: #bbb;
+    }
+
+    .footer-col ul li a:hover {
+      color: #fff;
+    }
+
+    .bottom {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    @media (max-width: 768px) {
+      .navbar nav ul {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="navbar">
+      <div class="logo">Don Bosco Tech</div>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Courses</a></li>
+          <li><a href="#">Events</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Rewriting India’s Skillscape</h1>
+    <p>Better Skills, Better Job and Better Life. Don Bosco Tech empowers youth with employable skills to create a brighter future.</p>
+    <button class="btn">Know More</button>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="stat">
+      <div class="number">477,622</div>
+      <div>Youth Skilled</div>
+    </div>
+    <div class="stat">
+      <div class="number">2,541</div>
+      <div>Youth Under Training</div>
+    </div>
+    <div class="stat">
+      <div class="number">420+</div>
+      <div>Training Centres</div>
+    </div>
+    <div class="stat">
+      <div class="number">29</div>
+      <div>States Covered</div>
+    </div>
+  </section>
+
+  <!-- Courses Section -->
+  <section class="courses">
+    <h2>Market Driven Courses</h2>
+    <div class="course-list">
+      <div class="course-card">
+        <h3>F&B – Steward</h3>
+        <p>Training in food and beverage services for hospitality roles.</p>
+      </div>
+      <div class="course-card">
+        <h3>Housekeeping</h3>
+        <p>Professional housekeeping training for hotels and institutions.</p>
+      </div>
+      <div class="course-card">
+        <h3>Electrician</h3>
+        <p>Basics of electrical work for entry-level electricians.</p>
+      </div>
+      <div class="course-card">
+        <h3>Retail Sales Associate</h3>
+        <p>Customer service and sales training for retail careers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>About Us</h4>
+        <ul>
+          <li><a href="#">Who We Are</a></li>
+          <li><a href="#">Vision & Mission</a></li>
+          <li><a href="#">Team</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Courses</h4>
+        <ul>
+          <li><a href="#">Hospitality</a></li>
+          <li><a href="#">Electrical</a></li>
+          <li><a href="#">Retail</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#">Email</a></li>
+          <li><a href="#">Phone</a></li>
+          <li><a href="#">Address</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bottom">
+      &copy; 2025 Don Bosco Tech Society. All Rights Reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
