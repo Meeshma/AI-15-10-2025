@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FILMPass</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-content">
+      <div class="brand">FILMPass</div>
+      <div class="search-container">
+        <div class="search-icon">🔍</div>
+        <input class="search-input" placeholder="Search for Movies, Events, Plays, Sports and Activities" />
+      </div>
+      <div class="header-actions">
+        <button class="location-selector" onclick="showStep(0)">📍 Kochi</button>
+        <button class="btn">Sign in</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <!-- Stepper -->
+    <div class="stepper">
+      <div class="step-pill active">
+        <span class="step-number">1</span>
+        <span>Location</span>
+      </div>
+      <div class="step-pill">
+        <span class="step-number">2</span>
+        <span>Movie</span>
+      </div>
+      <div class="step-pill">
+        <span class="step-number">3</span>
+        <span>Theatre & Time</span>
+      </div>
+      <div class="step-pill">
+        <span class="step-number">4</span>
+        <span>Seats</span>
+      </div>
+      <div class="step-pill">
+        <span class="step-number">5</span>
+        <span>Payment</span>
+      </div>
+    </div>
+
+    <!-- Step 0: Location -->
+    <div id="step0" class="step-content active">
+      <div class="step-header">
+        <h2 class="step-title">Select Your City</h2>
+        <p class="step-subtitle">Choose your city to discover movies, events and more</p>
+      </div>
+      
+      <div class="location-search">
+        <input type="text" class="location-input" placeholder="Search for your city">
+        <button class="detect-btn" onclick="detectLocation()">
+          📍 Detect my location
+        </button>
+      </div>
+      
+      <h3 class="popular-title">Popular Cities</h3>
+      <div class="locations-grid">
+        <div class="location-card" onclick="chooseLocation('Mumbai')">
+          <img src="mumbai.jpg" alt="Mumbai">
+          <div class="location-name">Mumbai</div>
+        </div>
+        <div class="location-card" onclick="chooseLocation('Delhi-NCR')">
+          <img src="delhi.jpg" alt="Delhi">
+          <div class="location-name">Delhi</div>
+        </div>
+        <div class="location-card" onclick="chooseLocation('Bangalore')">
+          <img src="bangalore.jpg" alt="Bangalore">
+          <div class="location-name">Bangalore</div>
+        </div>
+        <div class="location-card" onclick="chooseLocation('Hyderabad')">
+          <img src="hyderabad.jpg" alt="Hyderabad">
+          <div class="location-name">Hyderabad</div>
+        </div>
+        <div class="location-card" onclick="chooseLocation('Chennai')">
+          <img src="chennai.jpg" alt="Chennai">
+          <div class="location-name">Chennai</div>
+        </div>
+<div class="location-card" onclick="chooseLocation('Chandigarh')">
+          <img src="11.jpg" alt="Chandigarh">
+          <div class="location-name">Chandigarh</div>
+        </div>
+<div class="location-card" onclick="chooseLocation('Pune')">
+          <img src="12.jpg" alt="Pune">
+          <div class="location-name">Pune</div>
+        </div>
+<div class="location-card" onclick="chooseLocation('Goa')">
+          <img src="13.jpg" alt="Goa">
+          <div class="location-name">Goa</div>
+        </div>
+<div class="location-card" onclick="chooseLocation('Gujarat')">
+          <img src="14.jpg" alt="Gujarat">
+          <div class="location-name">GUjarat</div>
+        </div>
+        <div class="location-card" onclick="chooseLocation('Kochi')">
+          <img src="kochi.jpg" alt="Kochi">
+          <div class="location-name">Kochi</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 1: Movie -->
+    <div id="step1" class="step-content">
+      <div class="step-header">
+        <h2 class="step-title">Select Movie</h2>
+        <p class="step-subtitle">Choose from the latest blockbusters</p>
+      </div>
+      
+      <div class="movies-container">
+        <div class="movies-grid">
+          <div class="movie-card" onclick="selectMovie('Lokah: Chapter 1 - Chandra')">
+            <img class="movie-poster" src="1.jpg" alt="Movie 1">
+            <div class="movie-meta">
+              <h3 class="movie-title">Lokah: Chapter 1 - Chandra</h3>
+              <div class="movie-rating">⭐ 9.2/10</div>
+              <div class="movie-genre">2h 31m Action,Comedy,Fantasy </div>
+            </div>
+          </div>
+          <div class="movie-card" onclick="selectMovie('Demon Slayer: Kimetsu no Yaiba')">
+            <img class="movie-poster" src="2.jpg" alt="Movie 2">
+            <div class="movie-meta">
+              <h3 class="movie-title">Demon Slayer: Kimetsu no Yaiba</h3>
+              <div class="movie-rating">⭐ 9.5/10</div>
+              <div class="movie-genre">2h 35m Action,Adventure,Anime
+</div>
+            </div>
+          </div>
+          <div class="movie-card" onclick="selectMovie('The Conjuring: Last Rites')">
+            <img class="movie-poster" src="3.jpg" alt="Movie 3">
+            <div class="movie-meta">
+              <h3 class="movie-title">The Conjuring: Last Rites</h3>
+              <div class="movie-rating">⭐ 6.5/10</div>
+              <div class="movie-genre">2h 15m Horror,Thriller </div>
+            </div>
+          </div>
+ <div class="movie-card" onclick="selectMovie('Mirage')">
+            <img class="movie-poster" src="5.jpg" alt="Movie 3">
+            <div class="movie-meta">
+              <h3 class="movie-title">Mirage</h3>
+              <div class="movie-rating">⭐ 8.3/10</div>
+              <div class="movie-genre">2h 32m Mystery,Thriller </div>
+            </div>
+          </div>
+<div class="movie-card" onclick="selectMovie('Hridayapoorvam')">
+            <img class="movie-poster" src="6.jpg" alt="Movie 3">
+            <div class="movie-meta">
+              <h3 class="movie-title">Hridayapoorvam</h3>
+              <div class="movie-rating">⭐ 8.6/10</div>
+              <div class="movie-genre">2h 31m Comedy,Drama </div>
+            </div>
+          </div>
+
+<div class="movie-card" onclick="selectMovie('Mirai')">
+            <img class="movie-poster" src="7.jpg" alt="Movie 3">
+            <div class="movie-meta">
+              <h3 class="movie-title">Mirai</h3>
+              <div class="movie-rating">⭐ 8.9/10</div>
+              <div class="movie-genre">2h 49m Action,Adventure,Fantasy,Thriller </div>
+            </div>
+          </div>
+
+<div class="movie-card" onclick="selectMovie('Odum Kuthira Chaadum Kuthira
+')">
+            <img class="movie-poster" src="8.jpg" alt="Movie 3">
+            <div class="movie-meta">
+              <h3 class="movie-title">Odum Kuthira Chaadum Kuthira</h3>
+              <div class="movie-rating">⭐ 6.5/10</div>
+              <div class="movie-genre">2h 33m Comedy,Drama </div>
+            </div>
+          </div>
+<div class="movie-card" onclick="selectMovie('Humans in the Loop')">
+            <img class="movie-poster" src="9.jpg" alt="Movie 3">
+            <div class="movie-meta">
+              <h3 class="movie-title">Humans in the Loop</h3>
+              <div class="movie-rating">⭐ 9.3/10</div>
+              <div class="movie-genre">1h 14m Drama</div>
+            </div>
+          </div>
+<div class="movie-card" onclick="selectMovie('The Toxic Avenger')">
+            <img class="movie-poster" src="10.jpg" alt="Movie 3">
+            <div class="movie-meta">
+              <h3 class="movie-title">The Toxic Avenger</h3>
+              <div class="movie-rating">⭐ 8.3/10</div>
+              <div class="movie-genre">1h 44m Action,Comedy,Horror,Sci-Fi </div>
+            </div>
+          </div>
+          <div class="movie-card" onclick="selectMovie('Ajey: The Untold Story of a Yogi')">
+            <img class="movie-poster" src="4.jpg" alt="Movie 4">
+            <div class="movie-meta">
+              <h3 class="movie-title">Ajey: The Untold Story of a Yogi</h3>
+              <div class="movie-rating">⭐ 9.5/10</div>
+              <div class="movie-genre">2h 30m Biography,Drama </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Showtime -->
+    <div id="step2" class="step-content">
+      <div class="step-header">
+        <h2 class="step-title">Select Theatre & Showtime</h2>
+        <p class="step-subtitle">Choose your preferred cinema and time</p>
+      </div>
+      
+      <button class="back-btn" onclick="showStep(1)">← Back to Movies</button>
+      <div id="showtimes" class="showtimes-container"></div>
+    </div>
+
+    <!-- Step 3: Seat Selection -->
+    <div id="step3" class="step-content">
+      <div class="step-header">
+        <h2 class="step-title">Select Seats</h2>
+        <p class="step-subtitle">Choose your preferred seats</p>
+      </div>
+      
+      <button class="back-btn" onclick="showStep(2)">← Back to Showtimes</button>
+      
+      <div class="seat-selection-container">
+        <div class="screen">
+          <div class="screen-shape"></div>
+          <p class="screen-text">All eyes this way please</p>
+        </div>
+        
+        <div id="seats" class="seat-wrapper"></div>
+        
+        <div class="seat-legend">
+          <div class="legend-item">
+            <div class="legend-seat" style="background: #f8fafc; border: 2px solid #e2e8f0;"></div>
+            <span>Available</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-seat" style="background: linear-gradient(135deg, #dc2626, #b91c1c);"></div>
+            <span>Selected</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-seat" style="background: #94a3b8;"></div>
+            <span>Occupied</span>
+          </div>
+        </div>
+        
+        <div id="seat-info" class="seat-info">0 seat(s) selected</div>
+        
+        <div class="controls">
+          <button class="btn primary" onclick="showStep(4)">Proceed to Payment</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: Summary -->
+    <div id="step4" class="step-content">
+      <div class="step-header">
+        <h2 class="step-title">Booking Summary</h2>
+        <p class="step-subtitle">Review your booking details</p>
+      </div>
+      
+      <button class="back-btn" onclick="showStep(3)">← Back to Seats</button>
+      
+      <div class="summary-container">
+        <div id="summary"></div>
+        <div class="controls">
+          <button class="btn primary" onclick="confirmBooking()">Confirm & Generate Ticket</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5: Ticket -->
+    <div id="step5" class="step-content">
+      <div class="step-header">
+        <h2 class="step-title">Your Ticket</h2>
+        <p class="step-subtitle">Booking confirmed! Here's your digital ticket</p>
+      </div>
+      
+      <div class="ticket-container">
+        <div class="ticket-card">
+          <div class="ticket-content">
+            <div class="ticket-details">
+              <h3 id="ticket-movie">Movie Title</h3>
+              <p id="ticket-theatre"><strong>Theatre:</strong> </p>
+              <p id="ticket-showtime"><strong>Show Time:</strong> </p>
+              <p id="ticket-seats"><strong>Seats:</strong> </p>
+              <p id="ticket-price"><strong>Total Amount:</strong> </p>
+              <p><strong>Booking ID:</strong> <span id="booking-id">BMS123456789</span></p>
+            </div>
+            <div class="qr-container">
+              <div id="qrcode"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="controls">
+          <button class="btn" onclick="downloadPDF()">📱 Download Ticket</button>
+          <button class="btn" onclick="resetBooking()">🏠 Book Another Show</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
