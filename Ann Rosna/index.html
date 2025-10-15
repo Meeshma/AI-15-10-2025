@@ -1,0 +1,2417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeLearn - Master Programming Languages</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .courses-section {
+            background: rgba(255, 255, 255, 0.95);
+            margin: 2rem 0;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--course-color);
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .course-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .course-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .difficulty {
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .beginner { background: #e8f5e8; color: #2e7d32; }
+        .intermediate { background: #fff3e0; color: #f57c00; }
+        .advanced { background: #ffebee; color: #d32f2f; }
+
+        .start-button {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--course-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .start-button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .python-card { --course-color: #3776ab; }
+        .java-card { --course-color: #ed8b00; }
+        .cpp-card { --course-color: #00599c; }
+        .c-card { --course-color: #555555; }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Course Page Styles */
+        .course-page {
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .course-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .course-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .course-header .course-icon-large {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .course-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+
+        .curriculum-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .module {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--module-color);
+        }
+
+        .module h3 {
+            color: var(--module-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .module ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .module li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .module li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--module-color);
+            font-weight: bold;
+        }
+
+        .enroll-section {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .enroll-button {
+            padding: 1rem 3rem;
+            background: white;
+            color: var(--course-color);
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .enroll-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .python-page { --course-color: #3776ab; --module-color: #3776ab; }
+        .java-page { --course-color: #ed8b00; --module-color: #ed8b00; }
+        .cpp-page { --course-color: #00599c; --module-color: #00599c; }
+        .c-page { --course-color: #555555; --module-color: #555555; }
+
+        /* Auth Modal Styles */
+        .auth-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .auth-modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .auth-container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .auth-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .auth-tab.active {
+            color: var(--course-color);
+            border-bottom-color: var(--course-color);
+        }
+
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--course-color);
+        }
+
+        .auth-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--course-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .auth-submit:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Video Lessons Page Styles */
+        .video-lessons-page {
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .lessons-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .lessons-sidebar {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .lessons-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .lesson-item {
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .lesson-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+
+        .lesson-item.active {
+            background: rgba(255, 255, 255, 0.2);
+            border-left-color: var(--course-color);
+        }
+
+        .lesson-title {
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
+        }
+
+        .lesson-duration {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .video-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+
+        .video-player {
+            width: 100%;
+            height: 400px;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: none;
+        }
+
+        .current-lesson-info h2 {
+            color: var(--course-color);
+            margin-bottom: 1rem;
+        }
+
+        .lesson-description {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--course-color);
+        }
+
+        .lesson-notes {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .lesson-notes h3 {
+            color: var(--course-color);
+            margin-bottom: 1rem;
+        }
+
+        .lesson-notes ul {
+            padding-left: 1.5rem;
+        }
+
+        .lesson-notes li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .progress-bar {
+            background: #eee;
+            height: 4px;
+            border-radius: 2px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--course-color);
+            transition: width 0.3s ease;
+        }
+
+        /* User Profile */
+        .user-profile {
+            display: none;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .user-profile.active {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Video Lessons Page Styles */
+        .video-lessons-page {
+            color: white;
+            padding: 2rem 0;
+        }
+
+        .lessons-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .lessons-sidebar {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .lessons-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .lesson-item {
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .lesson-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(5px);
+        }
+
+        .lesson-item.active {
+            background: rgba(255, 255, 255, 0.2);
+            border-left-color: var(--course-color);
+        }
+
+        .lesson-title {
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+
+        .lesson-duration {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .video-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+
+        .video-player {
+            width: 100%;
+            height: 400px;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .current-lesson-info {
+            background: rgba(0, 0, 0, 0.1);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .courses-grid, .curriculum-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo" onclick="showPage('home')">CodeLearn</div>
+            <ul class="nav-links">
+                <li><a onclick="showPage('home')">Home</a></li>
+                <li><a onclick="scrollToSection('courses')">Courses</a></li>
+                <li><a onclick="scrollToSection('features')">Features</a></li>
+                <li><a onclick="showPage('about')">About</a></li>
+                <li><a onclick="showPage('contact')">Contact</a></li>
+            </ul>
+            <div class="user-profile" id="userProfile">
+                <span id="userName">John Doe</span>
+                <span>👤</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <main>
+            <section class="hero">
+                <div class="container">
+                    <h1>Master Programming Languages</h1>
+                    <p>Learn Python, Java, C++, and C with interactive tutorials, hands-on projects, and expert guidance</p>
+                    <button class="cta-button" onclick="scrollToSection('courses')">Start Learning Today</button>
+                </div>
+            </section>
+
+            <section class="container">
+                <div class="courses-section" id="courses">
+                    <h2 class="section-title">Choose Your Language</h2>
+                    <div class="courses-grid">
+                        <div class="course-card python-card">
+                            <span class="course-icon">🐍</span>
+                            <h3 class="course-title">Python Programming</h3>
+                            <p class="course-description">Start your coding journey with Python's simple syntax and powerful capabilities. Perfect for beginners and data science.</p>
+                            <div class="course-meta">
+                                <span>45 Lessons</span>
+                                <span class="difficulty beginner">Beginner</span>
+                            </div>
+                            <button class="start-button" onclick="showPage('python')">Start Python Course</button>
+                        </div>
+
+                        <div class="course-card java-card">
+                            <span class="course-icon">☕</span>
+                            <h3 class="course-title">Java Development</h3>
+                            <p class="course-description">Build enterprise applications with Java's robust, object-oriented approach. Essential for backend development.</p>
+                            <div class="course-meta">
+                                <span>60 Lessons</span>
+                                <span class="difficulty intermediate">Intermediate</span>
+                            </div>
+                            <button class="start-button" onclick="showPage('java')">Start Java Course</button>
+                        </div>
+
+                        <div class="course-card cpp-card">
+                            <span class="course-icon">⚡</span>
+                            <h3 class="course-title">C++ Programming</h3>
+                            <p class="course-description">Master high-performance programming with C++. Perfect for system programming, game development, and algorithms.</p>
+                            <div class="course-meta">
+                                <span>55 Lessons</span>
+                                <span class="difficulty advanced">Advanced</span>
+                            </div>
+                            <button class="start-button" onclick="showPage('cpp')">Start C++ Course</button>
+                        </div>
+
+                        <div class="course-card c-card">
+                            <span class="course-icon">🔧</span>
+                            <h3 class="course-title">C Programming</h3>
+                            <p class="course-description">Learn the foundation of modern programming with C. Understanding C helps you master any other language.</p>
+                            <div class="course-meta">
+                                <span>40 Lessons</span>
+                                <span class="difficulty beginner">Beginner</span>
+                            </div>
+                            <button class="start-button" onclick="showPage('c')">Start C Course</button>
+                        </div>
+                    </div>
+                </div>
+
+                <section class="features" id="features">
+                    <div class="feature">
+                        <div class="feature-icon">💻</div>
+                        <h3>Interactive Coding</h3>
+                        <p>Write and test code directly in your browser with our integrated development environment</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Project-Based Learning</h3>
+                        <p>Build real projects while learning. From simple scripts to complex applications</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">👥</div>
+                        <h3>Community Support</h3>
+                        <p>Join thousands of learners in our active community. Get help and share your progress</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">📜</div>
+                        <h3>Certificates</h3>
+                        <p>Earn certificates upon course completion to showcase your new programming skills</p>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <!-- Python Course Page -->
+    <div id="python" class="page">
+        <div class="course-page python-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('home')">
+                    ← Back to Courses
+                </button>
+                
+                <div class="course-header">
+                    <span class="course-icon-large">🐍</span>
+                    <h1>Python Programming</h1>
+                    <p>Master Python from basics to advanced concepts</p>
+                </div>
+
+                <div class="course-content">
+                    <h2>Course Overview</h2>
+                    <p>Python is one of the most popular programming languages today, known for its simplicity and versatility. This comprehensive course will take you from a complete beginner to an advanced Python developer.</p>
+                    
+                    <h2>What You'll Learn</h2>
+                    <div class="curriculum-grid">
+                        <div class="module">
+                            <h3>Module 1: Python Fundamentals</h3>
+                            <ul>
+                                <li>Python Installation and Setup</li>
+                                <li>Variables and Data Types</li>
+                                <li>Basic Input/Output Operations</li>
+                                <li>Comments and Documentation</li>
+                                <li>Python Syntax and Indentation</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Module 2: Control Structures</h3>
+                            <ul>
+                                <li>Conditional Statements (if, elif, else)</li>
+                                <li>Loops (for, while)</li>
+                                <li>Loop Control (break, continue)</li>
+                                <li>Nested Loops and Conditions</li>
+                                <li>Boolean Logic and Operators</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Module 3: Data Structures</h3>
+                            <ul>
+                                <li>Lists and List Comprehensions</li>
+                                <li>Tuples and Sets</li>
+                                <li>Dictionaries and Hash Maps</li>
+                                <li>Strings and String Manipulation</li>
+                                <li>Working with Collections</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Module 4: Functions & OOP</h3>
+                            <ul>
+                                <li>Defining and Calling Functions</li>
+                                <li>Parameters and Return Values</li>
+                                <li>Lambda Functions</li>
+                                <li>Classes and Objects</li>
+                                <li>Inheritance and Polymorphism</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Module 5: Advanced Topics</h3>
+                            <ul>
+                                <li>File Handling and I/O</li>
+                                <li>Exception Handling</li>
+                                <li>Modules and Packages</li>
+                                <li>Regular Expressions</li>
+                                <li>Decorators and Generators</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Module 6: Real-World Projects</h3>
+                            <ul>
+                                <li>Web Scraping with BeautifulSoup</li>
+                                <li>Data Analysis with Pandas</li>
+                                <li>GUI Applications with Tkinter</li>
+                                <li>API Development with Flask</li>
+                                <li>Final Capstone Project</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="enroll-section">
+                        <h2>Ready to Start Learning Python?</h2>
+                        <p>Join thousands of students who have already mastered Python programming</p>
+                        <button class="enroll-button" data-course="python">Sign In</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Java Course Page -->
+    <div id="java" class="page">
+        <div class="course-page java-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('home')">
+                    ← Back to Courses
+                </button>
+                
+                <div class="course-header">
+                    <span class="course-icon-large">☕</span>
+                    <h1>Java Development</h1>
+                    <p>Build robust enterprise applications with Java</p>
+                </div>
+
+                <div class="course-content">
+                    <h2>Course Overview</h2>
+                    <p>Java is a powerful, object-oriented programming language used by millions of developers worldwide. This course covers everything from basic syntax to advanced enterprise development patterns.</p>
+                    
+                    <h2>What You'll Learn</h2>
+                    <div class="curriculum-grid">
+                        <div class="module">
+                            <h3>Module 1: Java Fundamentals</h3>
+                            <ul>
+                                <li>Java Development Kit Setup</li>
+                                <li>Variables and Primitive Types</li>
+                                <li>Operators and Expressions</li>
+                                <li>Input/Output with Scanner</li>
+                                <li>Java Compilation Process</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Module 2: Object-Oriented Programming</h3>
+                            <ul>
+                                <li>Classes and Objects</li>
+                                <li>Constructors and Methods</li>
+                                <li>Encapsulation and Access Modifiers</li>
+                                <li>Inheritance and Super Keyword</li>
+                                <li>Polymorphism and Method Overriding</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Module 3: Advanced OOP</h3>
+                            <ul>
+                                <li>Abstract Classes and Interfaces</li>
+                                <li>Static Methods and Variables</li>
+                                <li>Inner Classes and Nested Classes</li>
+                                <li>Enum Types</li>
+                                <li>Generic Programming</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Module 4: Data Structures & Collections</h3>
+                            <ul>
+                                <li>Arrays and Array Lists</li>
+                                <li>LinkedLists and Stacks</li>
+                                <li>HashMap and TreeMap</li>
+                                <li>Sets and Queues</li>
+                                <li>Iterator and Collections Framework</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Module 5: Exception Handling & I/O</h3>
+                            <ul>
+                                <li>Try-Catch-Finally Blocks</li>
+                                <li>Custom Exceptions</li>
+                                <li>File I/O Operations</li>
+                                <li>Serialization</li>
+                                <li>NIO Package</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Module 6: Enterprise Development</h3>
+                            <ul>
+                                <li>Multithreading and Concurrency</li>
+                                <li>Database Connectivity (JDBC)</li>
+                                <li>Spring Framework Basics</li>
+                                <li>RESTful Web Services</li>
+                                <li>Enterprise Project</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="enroll-section">
+                        <h2>Master Java Development</h2>
+                        <p>Build enterprise-grade applications with industry best practices</p>
+                        <button class="enroll-button" data-course="java">Sign In</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- C++ Course Page -->
+    <div id="cpp" class="page">
+        <div class="course-page cpp-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('home')">
+                    ← Back to Courses
+                </button>
+                
+                <div class="course-header">
+                    <span class="course-icon-large">⚡</span>
+                    <h1>C++ Programming</h1>
+                    <p>Master high-performance system programming</p>
+                </div>
+
+                <div class="course-content">
+                    <h2>Course Overview</h2>
+                    <p>C++ is a powerful, high-performance programming language used in system programming, game development, and performance-critical applications. This course covers both C and C++ concepts comprehensively.</p>
+                    
+                    <h2>What You'll Learn</h2>
+                    <div class="curriculum-grid">
+                        <div class="module">
+                            <h3>Module 1: C++ Basics</h3>
+                            <ul>
+                                <li>Environment Setup and IDE</li>
+                                <li>Variables and Data Types</li>
+                                <li>Operators and Expressions</li>
+                                <li>Input/Output Streams</li>
+                                <li>Program Structure</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Module 2: Control Flow</h3>
+                            <ul>
+                                <li>Conditional Statements</li>
+                                <li>Switch-Case Statements</li>
+                                <li>Loops and Iterations</li>
+                                <li>Jump Statements</li>
+                                <li>Logical Operators</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Module 3: Functions & Arrays</h3>
+                            <ul>
+                                <li>Function Declaration and Definition</li>
+                                <li>Function Overloading</li>
+                                <li>Arrays and Pointers</li>
+                                <li>Multi-dimensional Arrays</li>
+                                <li>Dynamic Memory Allocation</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Module 4: Object-Oriented Programming</h3>
+                            <ul>
+                                <li>Classes and Objects</li>
+                                <li>Constructors and Destructors</li>
+                                <li>Inheritance and Access Control</li>
+                                <li>Virtual Functions and Polymorphism</li>
+                                <li>Operator Overloading</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Module 5: Advanced C++</h3>
+                            <ul>
+                                <li>Templates and Generic Programming</li>
+                                <li>STL (Standard Template Library)</li>
+                                <li>Exception Handling</li>
+                                <li>File I/O Operations</li>
+                                <li>Namespaces and Scope</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Module 6: System Programming</h3>
+                            <ul>
+                                <li>Memory Management</li>
+                                <li>System Calls and APIs</li>
+                                <li>Performance Optimization</li>
+                                <li>Game Development Basics</li>
+                                <li>Final System Project</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="enroll-section">
+                        <h2>Master High-Performance Programming</h2>
+                        <p>Build efficient systems and applications with C++</p>
+                        <button class="enroll-button" data-course="cpp">Sign In</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- C Course Page -->
+    <div id="c" class="page">
+        <div class="course-page c-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('home')">
+                    ← Back to Courses
+                </button>
+                
+                <div class="course-header">
+                    <span class="course-icon-large">🔧</span>
+                    <h1>C Programming</h1>
+                    <p>Learn the foundation of modern programming</p>
+                </div>
+
+                <div class="course-content">
+                    <h2>Course Overview</h2>
+                    <p>C is the foundation of modern programming languages. This course provides a solid understanding of programming fundamentals that will help you master any other language.</p>
+                    
+                    <h2>What You'll Learn</h2>
+                    <div class="curriculum-grid">
+                        <div class="module">
+                            <h3>Module 1: C Fundamentals</h3>
+                            <ul>
+                                <li>Setting up Development Environment</li>
+                                <li>Basic Syntax and Structure</li>
+                                <li>Variables and Constants</li>
+                                <li>Data Types and Type Casting</li>
+                                <li>Input/Output Functions</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Module 2: Control Structures</h3>
+                            <ul>
+                                <li>Conditional Statements (if, else if, else)</li>
+                                <li>Switch-Case Statements</li>
+                                <li>For and While Loops</li>
+                                <li>Do-While Loops</li>
+                                <li>Break and Continue</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Module 3: Functions</h3>
+                            <ul>
+                                <li>Function Declaration and Definition</li>
+                                <li>Function Parameters and Arguments</li>
+                                <li>Return Values and Scope</li>
+                                <li>Recursive Functions</li>
+                                <li>Library Functions</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Module 4: Arrays and Strings</h3>
+                            <ul>
+                                <li>One-dimensional Arrays</li>
+                                <li>Multi-dimensional Arrays</li>
+                                <li>String Handling</li>
+                                <li>String Library Functions</li>
+                                <li>Character Arrays</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Module 5: Pointers and Memory</h3>
+                            <ul>
+                                <li>Introduction to Pointers</li>
+                                <li>Pointer Arithmetic</li>
+                                <li>Pointers and Arrays</li>
+                                <li>Dynamic Memory Allocation</li>
+                                <li>Memory Management</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Module 6: Advanced Topics</h3>
+                            <ul>
+                                <li>Structures and Unions</li>
+                                <li>File I/O Operations</li>
+                                <li>Preprocessor Directives</li>
+                                <li>Command Line Arguments</li>
+                                <li>System Programming Project</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="enroll-section">
+                        <h2>Master the Foundation of Programming</h2>
+                        <p>Build a strong foundation that will help you learn any programming language</p>
+                        <button class="enroll-button" data-course="c">Sign In</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-container">
+            <button class="auth-close" onclick="closeAuthModal()">&times;</button>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuthTab('login')">Login</button>
+                <button class="auth-tab" onclick="switchAuthTab('signup')">Sign Up</button>
+            </div>
+
+            <form id="loginForm" class="auth-form active">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="auth-submit">Login</button>
+            </form>
+
+            <form id="signupForm" class="auth-form">
+                <div class="form-group">
+                    <label for="signupName">Full Name</label>
+                    <input type="text" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="signupPassword">Password</label>
+                    <input type="password" id="signupPassword" required>
+                </div>
+                <button type="submit" class="auth-submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Python Video Lessons -->
+    <div id="python-lessons" class="page">
+        <div class="video-lessons-page python-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('python')">
+                    ← Back to Python Course
+                </button>
+                
+                <div class="course-header">
+                    <span class="course-icon-large">🐍</span>
+                    <h1>Python Video Lessons</h1>
+                    <p>Interactive video tutorials with hands-on coding</p>
+                </div>
+
+                <div class="lessons-container">
+                    <div class="lessons-sidebar">
+                        <h3>Course Progress</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 20%"></div>
+                        </div>
+                        <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">1 of 5 modules completed</p>
+                        
+                        <h3>Lessons</h3>
+                        <ul class="lessons-list" id="pythonLessons">
+                            <li class="lesson-item active" data-video="dQw4w9WgXcQ" data-lesson="0">
+                                <div class="lesson-title">Python Installation & Setup</div>
+                                <div class="lesson-duration">12 min</div>
+                            </li>
+                            <li class="lesson-item" data-video="kqtD5dpn9C8" data-lesson="1">
+                                <div class="lesson-title">Variables and Data Types</div>
+                                <div class="lesson-duration">18 min</div>
+                            </li>
+                            <li class="lesson-item" data-video="_uQrJ0TkZlc" data-lesson="2">
+                                <div class="lesson-title">Control Structures</div>
+                                <div class="lesson-duration">25 min</div>
+                            </li>
+                            <li class="lesson-item" data-video="N4mEzFDjqtA" data-lesson="3">
+                                <div class="lesson-title">Functions in Python</div>
+                                <div class="lesson-duration">22 min</div>
+                            </li>
+                            <li class="lesson-item" data-video="t8pPdKYpowI" data-lesson="4">
+                                <div class="lesson-title">Lists and Dictionaries</div>
+                                <div class="lesson-duration">30 min</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="video-content">
+                        <iframe class="video-player" 
+                                src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                frameborder="0" 
+                                allowfullscreen
+                                id="videoPlayer">
+                        </iframe>
+                        
+                        <div class="current-lesson-info">
+                            <h2 id="currentLessonTitle">Python Installation & Setup</h2>
+                            <div class="lesson-description" id="lessonDescription">
+                                Learn how to install Python on your computer and set up your development environment. We'll cover Python installation on Windows, Mac, and Linux, along with setting up a code editor.
+                            </div>
+                        </div>
+
+                        <div class="lesson-notes">
+                            <h3>📝 Lesson Notes</h3>
+                            <div id="lessonNotes">
+                                <ul>
+                                    <li>Download Python from official website (python.org)</li>
+                                    <li>Choose the latest stable version (Python 3.x)</li>
+                                    <li>Make sure to check "Add Python to PATH" during installation</li>
+                                    <li>Verify installation by running 'python --version' in terminal</li>
+                                    <li>Install a code editor like VS Code or PyCharm</li>
+                                    <li>Create your first Python file (.py extension)</li>
+                                    <li>Run your first "Hello World" program</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Java Video Lessons -->
+    <div id="java-lessons" class="page">
+        <div class="video-lessons-page java-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('java')">
+                    ← Back to Java Course
+                </button>
+                
+                <div class="course-header">
+                    <span class="course-icon-large">☕</span>
+                    <h1>Java Video Lessons</h1>
+                    <p>Professional Java development from basics to advanced</p>
+                </div>
+
+                <div class="lessons-container">
+                    <div class="lessons-sidebar">
+                        <h3>Course Progress</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 15%"></div>
+                        </div>
+                        <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">1 of 6 modules completed</p>
+                        
+                        <h3>Lessons</h3>
+                        <ul class="lessons-list" id="javaLessons">
+                            <li class="lesson-item active" data-video="eIrMbAQSU34" data-lesson="0">
+                                <div class="lesson-title">Java Development Kit Setup</div>
+                                <div class="lesson-duration">15 min</div>
+                            </li>
+                            <li class="lesson-item" data-video="GoXwIVyNvX0" data-lesson="1">
+                                <div class="lesson-title">Your First Java Program</div>
+                                <div class="lesson-duration">20 min</div>
+                            </li>
+                            <li class="lesson-item" data-video="2ZLl8GAk1X4" data-lesson="2">
+                                <div class="lesson-title">Classes and Objects</div>
+                                <div class="lesson-duration">28 min</div>
+                            </li>
+                            <li class="lesson-item" data-video="A74TOX803D0" data-lesson="3">
+                                <div class="lesson-title">Inheritance in Java</div>
+                                <div class="lesson-duration">25 min</div>
+                            </li>
+                            <li class="lesson-item" data-video="Wj9q6HTo3vo" data-lesson="4">
+                                <div class="lesson-title">Exception Handling</div>
+                                <div class="lesson-duration">22 min</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="video-content">
+                        <iframe class="video-player" 
+                                src="https://www.youtube.com/embed/eIrMbAQSU34" 
+                                frameborder="0" 
+                                allowfullscreen
+                                id="javaVideoPlayer">
+                        </iframe>
+                        
+                        <div class="current-lesson-info">
+                            <h2 id="javaLessonTitle">Java Development Kit Setup</h2>
+                            <div class="lesson-description" id="javaLessonDescription">
+                                Learn how to install Java JDK and set up your development environment for Java programming. We'll cover JDK installation, IDE setup, and creating your first Java project.
+                            </div>
+                        </div>
+
+                        <div class="lesson-notes">
+                            <h3>📝 Lesson Notes</h3>
+                            <div id="javaLessonNotes">
+                                <ul>
+                                    <li>Download Oracle JDK or OpenJDK from official sources</li>
+                                    <li>Set JAVA_HOME environment variable</li>
+                                    <li>Add Java to system PATH</li>
+                                    <li>Verify installation with 'java -version' command</li>
+                                    <li>Install an IDE (IntelliJ IDEA, Eclipse, or NetBeans)</li>
+                                    <li>Create a new Java project</li>
+                                    <li>Understanding Java compilation process (javac and java commands)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- C++ Video Lessons -->
+    <div id="cpp-lessons" class="page">
+        <div class="video-lessons-page cpp-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('cpp')">
+                    ← Back to C++ Course
+                </button>
+                
+                <div class="course-header">
+                    <span class="course-icon-large">⚡</span>
+                    <h1>C++ Video Lessons</h1>
+                    <p>High-performance programming with C++</p>
+                </div>
+
+                <div class="lessons-container">
+                    <div class="lessons-sidebar">
+                        <h3>Course Progress</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 12%"></div>
+                        </div>
+                        <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">1 of 6 modules completed</p>
+                        
+                        <h3>Lessons</h3>
+                        <ul class="lessons-list" id="cppLessons">
+                            <li class="lesson-item active" data-video="vLnPwxZdW4Y" data-lesson="0">
+                                <div class="lesson-title">C++ Environment Setup</div>
+                                <div class="lesson-duration">16 min</div>
+                            </li>
+                            <li class="lesson-item" data-video="1v_4dL8l8pQ" data-lesson="1">
+                                <div class="lesson-title">Basic C++ Syntax</div>
+                                <div class="lesson-duration">24 min</div>
+                            </li>
+                            <li class="lesson-item" data-video="DamuE8TM3xo" data-lesson="2">
+                                <div class="lesson-title">Pointers and References</div>
+                                <div class="lesson-duration">32 min</div>
+                            </li>
+                            <li class="lesson-item" data-video="18c3MTX0PK0" data-lesson="3">
+                                <div class="lesson-title">Classes and Objects in C++</div>
+                                <div class="lesson-duration">28 min</div>
+                            </li>
+                            <li class="lesson-item" data-video="wN0x9eZLix4" data-lesson="4">
+                                <div class="lesson-title">Memory Management</div>
+                                <div class="lesson-duration">26 min</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="video-content">
+                        <iframe class="video-player" 
+                                src="https://www.youtube.com/embed/vLnPwxZdW4Y" 
+                                frameborder="0" 
+                                allowfullscreen
+                                id="cppVideoPlayer">
+                        </iframe>
+                        
+                        <div class="current-lesson-info">
+                            <h2 id="cppLessonTitle">C++ Environment Setup</h2>
+                            <div class="lesson-description" id="cppLessonDescription">
+                                Set up your C++ development environment with modern compilers and tools. Learn about different compilers, IDEs, and build systems for C++ development.
+                            </div>
+                        </div>
+
+                        <div class="lesson-notes">
+                            <h3>📝 Lesson Notes</h3>
+                            <div id="cppLessonNotes">
+                                <ul>
+                                    <li>Install a C++ compiler (GCC, Clang, or MSVC)</li>
+                                    <li>Set up an IDE (Visual Studio, Code::Blocks, or CLion)</li>
+                                    <li>Understanding compiler flags and options</li>
+                                    <li>Creating and compiling your first C++ program</li>
+                                    <li>Understanding the build process</li>
+                                    <li>Setting up version control (Git)</li>
+                                    <li>Introduction to CMake build system</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- C Video Lessons -->
+    <div id="c-lessons" class="page">
+        <div class="video-lessons-page c-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('c')">
+                    ← Back to C Course
+                </button>
+                
+                <div class="course-header">
+                    <span class="course-icon-large">🔧</span>
+                    <h1>C Video Lessons</h1>
+                    <p>Master the foundation of programming with C</p>
+                </div>
+
+                <div class="lessons-container">
+                    <div class="lessons-sidebar">
+                        <h3>Course Progress</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 18%"></div>
+                        </div>
+                        <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">1 of 6 modules completed</p>
+                        
+                        <h3>Lessons</h3>
+                        <ul class="lessons-list" id="cLessons">
+                            <li class="lesson-item active" data-video="KJgsSFOSQv0" data-lesson="0">
+                                <div class="lesson-title">C Programming Setup</div>
+                                <div class="lesson-duration">14 min</div>
+                            </li>
+                            <li class="lesson-item" data-video="87SH2Cn0s9A" data-lesson="1">
+                                <div class="lesson-title">Variables and Data Types</div>
+                                <div class="lesson-duration">19 min</div>
+                            </li>
+                            <li class="lesson-item" data-video="rZVF_1HJmig" data-lesson="2">
+                                <div class="lesson-title">Control Flow in C</div>
+                                <div class="lesson-duration">23 min</div>
+                            </li>
+                            <li class="lesson-item" data-video="7Dh73z3icd8" data-lesson="3">
+                                <div class="lesson-title">Functions in C</div>
+                                <div class="lesson-duration">21 min</div>
+                            </li>
+                            <li class="lesson-item" data-video="zuegQmMdy8M" data-lesson="4">
+                                <div class="lesson-title">Arrays and Pointers</div>
+                                <div class="lesson-duration">27 min</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="video-content">
+                        <iframe class="video-player" 
+                                src="https://www.youtube.com/embed/KJgsSFOSQv0" 
+                                frameborder="0" 
+                                allowfullscreen
+                                id="cVideoPlayer">
+                        </iframe>
+                        
+                        <div class="current-lesson-info">
+                            <h2 id="cLessonTitle">C Programming Setup</h2>
+                            <div class="lesson-description" id="cLessonDescription">
+                                Learn how to set up your C programming environment, including compiler installation and IDE configuration. Start your journey into the fundamentals of programming.
+                            </div>
+                        </div>
+
+                        <div class="lesson-notes">
+                            <h3>📝 Lesson Notes</h3>
+                            <div id="cLessonNotes">
+                                <ul>
+                                    <li>Install GCC compiler or use online IDEs</li>
+                                    <li>Set up a text editor or IDE (VS Code, Dev-C++)</li>
+                                    <li>Understanding C program structure</li>
+                                    <li>Compile and run your first C program</li>
+                                    <li>Understanding compilation process</li>
+                                    <li>Basic debugging techniques</li>
+                                    <li>Working with command line arguments</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 CodeLearn. Empowering developers worldwide.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Global variables
+        let currentUser = null;
+        let selectedCourse = null;
+
+        // Lesson data for each course
+        const lessonData = {
+            python: [
+                {
+                    title: "Python Installation & Setup",
+                    description: "Learn how to install Python on your computer and set up your development environment. We'll cover Python installation on Windows, Mac, and Linux, along with setting up a code editor.",
+                    notes: [
+                        "Download Python from official website (python.org)",
+                        "Choose the latest stable version (Python 3.x)",
+                        "Make sure to check 'Add Python to PATH' during installation",
+                        "Verify installation by running 'python --version' in terminal",
+                        "Install a code editor like VS Code or PyCharm",
+                        "Create your first Python file (.py extension)",
+                        "Run your first 'Hello World' program"
+                    ]
+                },
+                {
+                    title: "Variables and Data Types",
+                    description: "Understand Python's dynamic typing system and learn about different data types including strings, integers, floats, booleans, and how to work with them effectively.",
+                    notes: [
+                        "Python is dynamically typed - no need to declare variable types",
+                        "Basic data types: int, float, str, bool",
+                        "Using type() function to check data types",
+                        "Variable naming conventions in Python",
+                        "String formatting and manipulation",
+                        "Type conversion functions (int(), float(), str())",
+                        "Working with user input using input() function"
+                    ]
+                },
+                {
+                    title: "Control Structures",
+                    description: "Master Python's control flow with if-elif-else statements, for and while loops, and understand how to control program execution flow.",
+                    notes: [
+                        "Conditional statements: if, elif, else",
+                        "Comparison operators: ==, !=, <, >, <=, >=",
+                        "Logical operators: and, or, not",
+                        "For loops with range() function",
+                        "While loops and loop control",
+                        "Break and continue statements",
+                        "Nested loops and conditions"
+                    ]
+                },
+                {
+                    title: "Functions in Python",
+                    description: "Learn how to create reusable code with functions, understand parameters, return values, and scope in Python programming.",
+                    notes: [
+                        "Defining functions with def keyword",
+                        "Function parameters and arguments",
+                        "Return statements and return values",
+                        "Local vs global scope",
+                        "Default parameter values",
+                        "*args and **kwargs for variable arguments",
+                        "Lambda functions for simple operations"
+                    ]
+                },
+                {
+                    title: "Lists and Dictionaries",
+                    description: "Explore Python's powerful data structures - lists and dictionaries. Learn how to store, access, and manipulate collections of data.",
+                    notes: [
+                        "Creating and accessing lists",
+                        "List methods: append(), remove(), pop(), sort()",
+                        "List slicing and indexing",
+                        "List comprehensions for efficient coding",
+                        "Creating and working with dictionaries",
+                        "Dictionary methods: keys(), values(), items()",
+                        "Nested data structures (lists of dictionaries)"
+                    ]
+                }
+            ],
+            java: [
+                {
+                    title: "Java Development Kit Setup",
+                    description: "Learn how to install Java JDK and set up your development environment for Java programming. We'll cover JDK installation, IDE setup, and creating your first Java project.",
+                    notes: [
+                        "Download Oracle JDK or OpenJDK from official sources",
+                        "Set JAVA_HOME environment variable",
+                        "Add Java to system PATH",
+                        "Verify installation with 'java -version' command",
+                        "Install an IDE (IntelliJ IDEA, Eclipse, or NetBeans)",
+                        "Create a new Java project",
+                        "Understanding Java compilation process (javac and java commands)"
+                    ]
+                },
+                {
+                    title: "Your First Java Program",
+                    description: "Write and understand your first Java program. Learn about Java syntax, the main method, and basic program structure.",
+                    notes: [
+                        "Java program structure and syntax",
+                        "Understanding the main method",
+                        "Java naming conventions",
+                        "Compiling Java code with javac",
+                        "Running Java programs with java command",
+                        "Understanding Java bytecode",
+                        "Basic input/output with System.out.println()"
+                    ]
+                },
+                {
+                    title: "Classes and Objects",
+                    description: "Dive into object-oriented programming with Java. Learn how to create classes, instantiate objects, and understand the fundamentals of OOP.",
+                    notes: [
+                        "Creating classes and objects",
+                        "Instance variables and methods",
+                        "Constructors and initialization",
+                        "Access modifiers: private, public, protected",
+                        "this keyword usage",
+                        "Method overloading",
+                        "Getters and setters (encapsulation)"
+                    ]
+                },
+                {
+                    title: "Inheritance in Java",
+                    description: "Master inheritance, one of the core principles of OOP. Learn how to create class hierarchies and reuse code effectively.",
+                    notes: [
+                        "Understanding inheritance concept",
+                        "extends keyword and superclass",
+                        "Method overriding with @Override",
+                        "super keyword usage",
+                        "Constructor chaining in inheritance",
+                        "Abstract classes and methods",
+                        "final keyword and its uses"
+                    ]
+                },
+                {
+                    title: "Exception Handling",
+                    description: "Learn how to handle errors gracefully in Java using try-catch blocks, custom exceptions, and best practices for error management.",
+                    notes: [
+                        "Understanding exceptions and errors",
+                        "try-catch-finally blocks",
+                        "Multiple catch blocks",
+                        "Checked vs unchecked exceptions",
+                        "Creating custom exceptions",
+                        "throws and throw keywords",
+                        "Best practices for exception handling"
+                    ]
+                }
+            ],
+            cpp: [
+                {
+                    title: "C++ Environment Setup",
+                    description: "Set up your C++ development environment with modern compilers and tools. Learn about different compilers, IDEs, and build systems for C++ development.",
+                    notes: [
+                        "Install a C++ compiler (GCC, Clang, or MSVC)",
+                        "Set up an IDE (Visual Studio, Code::Blocks, or CLion)",
+                        "Understanding compiler flags and options",
+                        "Creating and compiling your first C++ program",
+                        "Understanding the build process",
+                        "Setting up version control (Git)",
+                        "Introduction to CMake build system"
+                    ]
+                },
+                {
+                    title: "Basic C++ Syntax",
+                    description: "Learn the fundamental syntax of C++, including variables, data types, operators, and basic program structure.",
+                    notes: [
+                        "C++ program structure and main function",
+                        "Variables and data types (int, float, double, char)",
+                        "Constants and literals",
+                        "Arithmetic and logical operators",
+                        "Input/output with cin and cout",
+                        "Comments and documentation",
+                        "Namespaces and using directive"
+                    ]
+                },
+                {
+                    title: "Pointers and References",
+                    description: "Master one of C++'s most powerful features - pointers and references. Learn memory management and efficient data handling.",
+                    notes: [
+                        "Understanding memory addresses",
+                        "Declaring and using pointers",
+                        "Pointer arithmetic and operations",
+                        "References as aliases",
+                        "Differences between pointers and references",
+                        "Null pointers and pointer safety",
+                        "Dynamic memory allocation with new/delete"
+                    ]
+                },
+                {
+                    title: "Classes and Objects in C++",
+                    description: "Learn object-oriented programming in C++. Create classes, objects, and understand encapsulation, constructors, and destructors.",
+                    notes: [
+                        "Defining classes and creating objects",
+                        "Public, private, and protected access specifiers",
+                        "Constructors and initialization lists",
+                        "Destructors and resource cleanup",
+                        "Member functions and data members",
+                        "Static members and functions",
+                        "Friend functions and classes"
+                    ]
+                },
+                {
+                    title: "Memory Management",
+                    description: "Master dynamic memory allocation, deallocation, and modern C++ memory management techniques including smart pointers.",
+                    notes: [
+                        "Stack vs heap memory",
+                        "Dynamic allocation with new/delete",
+                        "Memory leaks and how to avoid them",
+                        "RAII (Resource Acquisition Is Initialization)",
+                        "Smart pointers: unique_ptr, shared_ptr, weak_ptr",
+                        "Move semantics and rvalue references",
+                        "Best practices for memory management"
+                    ]
+                }
+            ],
+            c: [
+                {
+                    title: "C Programming Setup",
+                    description: "Learn how to set up your C programming environment, including compiler installation and IDE configuration. Start your journey into the fundamentals of programming.",
+                    notes: [
+                        "Install GCC compiler or use online IDEs",
+                        "Set up a text editor or IDE (VS Code, Dev-C++)",
+                        "Understanding C program structure",
+                        "Compile and run your first C program",
+                        "Understanding compilation process",
+                        "Basic debugging techniques",
+                        "Working with command line arguments"
+                    ]
+                },
+                {
+                    title: "Variables and Data Types",
+                    description: "Understand C's type system, learn about different data types, variable declarations, and how to work with data in C programming.",
+                    notes: [
+                        "Basic data types: int, float, double, char",
+                        "Variable declaration and initialization",
+                        "Constants with #define and const",
+                        "Type modifiers: signed, unsigned, short, long",
+                        "Format specifiers for printf and scanf",
+                        "ASCII values and character handling",
+                        "Type casting and conversion"
+                    ]
+                },
+                {
+                    title: "Control Flow in C",
+                    description: "Master control structures in C programming including conditional statements, loops, and program flow control mechanisms.",
+                    notes: [
+                        "if-else statements and nested conditions",
+                        "switch-case statements",
+                        "for loops and initialization",
+                        "while and do-while loops",
+                        "break and continue statements",
+                        "goto statement (and why to avoid it)",
+                        "Nested loops and loop control"
+                    ]
+                },
+                {
+                    title: "Functions in C",
+                    description: "Learn how to create modular code with functions, understand parameter passing, return values, and function scope in C.",
+                    notes: [
+                        "Function declaration and definition",
+                        "Function prototypes",
+                        "Parameter passing: pass by value",
+                        "Return statements and return types",
+                        "Local and global variables",
+                        "Static variables and functions",
+                        "Recursive functions and stack overflow"
+                    ]
+                },
+                {
+                    title: "Arrays and Pointers",
+                    description: "Explore arrays and pointers, fundamental concepts in C programming. Learn memory management and efficient data handling.",
+                    notes: [
+                        "Array declaration and initialization",
+                        "Accessing array elements",
+                        "Multi-dimensional arrays",
+                        "Introduction to pointers",
+                        "Pointer arithmetic",
+                        "Relationship between arrays and pointers",
+                        "String handling with character arrays"
+                    ]
+                }
+            ]
+        };
+
+        // Page navigation functionality
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // Scroll to section within the home page
+        function scrollToSection(sectionId) {
+            showPage('home');
+            setTimeout(() => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }, 100);
+        }
+
+        // Auth Modal Functions
+        function showAuthModal(course) {
+            selectedCourse = course;
+            const modal = document.getElementById('authModal');
+            const authContainer = modal.querySelector('.auth-container');
+            
+            // Set course color for modal
+            authContainer.style.setProperty('--course-color', getCourseColor(course));
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAuthModal() {
+            const modal = document.getElementById('authModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function switchAuthTab(tab) {
+            const tabs = document.querySelectorAll('.auth-tab');
+            const forms = document.querySelectorAll('.auth-form');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            forms.forEach(f => f.classList.remove('active'));
+            
+            document.querySelector(`.auth-tab:nth-child(${tab === 'login' ? '1' : '2'})`).classList.add('active');
+            document.getElementById(`${tab}Form`).classList.add('active');
+        }
+
+        function getCourseColor(course) {
+            const colors = {
+                python: '#3776ab',
+                java: '#ed8b00',
+                cpp: '#00599c',
+                c: '#555555'
+            };
+            return colors[course];
+        }
+
+        // Handle form submissions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Login form
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                
+                if (email && password) {
+                    // Simulate login
+                    currentUser = { name: email.split('@')[0], email: email };
+                    document.getElementById('userName').textContent = currentUser.name;
+                    document.getElementById('userProfile').classList.add('active');
+                    
+                    closeAuthModal();
+                    showPage(selectedCourse + '-lessons');
+                    
+                    // Show success message
+                    setTimeout(() => {
+                        alert('Welcome! You are now enrolled in the ' + selectedCourse.toUpperCase() + ' course.');
+                    }, 500);
+                }
+            });
+
+            // Signup form
+            document.getElementById('signupForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('signupName').value;
+                const email = document.getElementById('signupEmail').value;
+                const password = document.getElementById('signupPassword').value;
+                
+                if (name && email && password) {
+                    // Simulate signup
+                    currentUser = { name: name, email: email };
+                    document.getElementById('userName').textContent = currentUser.name;
+                    document.getElementById('userProfile').classList.add('active');
+                    
+                    closeAuthModal();
+                    showPage(selectedCourse + '-lessons');
+                    
+                    // Show success message
+                    setTimeout(() => {
+                        alert('Account created successfully! Welcome to the ' + selectedCourse.toUpperCase() + ' course.');
+                    }, 500);
+                }
+            });
+
+            // Enroll buttons
+            document.querySelectorAll('.enroll-button').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const course = this.getAttribute('data-course');
+                    if (course) {
+                        showAuthModal(course);
+                    } else {
+                        // Handle other enroll buttons (like "Explore Courses")
+                        showPage('home');
+                        setTimeout(() => scrollToSection('courses'), 100);
+                    }
+                });
+            });
+
+            // Video lesson navigation
+            setupVideoLessonNavigation();
+        });
+
+        function setupVideoLessonNavigation() {
+            // Setup lesson navigation for each course
+            ['python', 'java', 'cpp', 'c'].forEach(course => {
+                const lessons = document.querySelectorAll(`#${course}Lessons .lesson-item`);
+                lessons.forEach(lesson => {
+                    lesson.addEventListener('click', function() {
+                        const videoId = this.getAttribute('data-video');
+                        const lessonIndex = parseInt(this.getAttribute('data-lesson'));
+                        
+                        // Update active lesson
+                        lessons.forEach(l => l.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        // Update video player
+                        const videoPlayer = document.getElementById(course === 'python' ? 'videoPlayer' : course + 'VideoPlayer');
+                        if (videoPlayer) {
+                            videoPlayer.src = `https://www.youtube.com/embed/${videoId}`;
+                        }
+                        
+                        // Update lesson info
+                        updateLessonInfo(course, lessonIndex);
+                    });
+                });
+            });
+        }
+
+        function updateLessonInfo(course, lessonIndex) {
+            const lesson = lessonData[course][lessonIndex];
+            if (!lesson) return;
+            
+            const titleElement = document.getElementById(course === 'python' ? 'currentLessonTitle' : course + 'LessonTitle');
+            const descriptionElement = document.getElementById(course === 'python' ? 'lessonDescription' : course + 'LessonDescription');
+            const notesElement = document.getElementById(course === 'python' ? 'lessonNotes' : course + 'LessonNotes');
+            
+            if (titleElement) titleElement.textContent = lesson.title;
+            if (descriptionElement) descriptionElement.textContent = lesson.description;
+            if (notesElement) {
+                notesElement.innerHTML = '<ul>' + lesson.notes.map(note => `<li>${note}</li>`).join('') + '</ul>';
+            }
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('authModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAuthModal();
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                scrollToSection(targetId);
+            });
+        });
+
+        // Add click animation to course cards and buttons
+        document.querySelectorAll('.start-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Create ripple effect
+                const ripple = document.createElement('span');
+                ripple.style.cssText = `
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.6);
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                `;
+                
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = (rect.width / 2 - size / 2) + 'px';
+                ripple.style.top = (rect.height / 2 - size / 2) + 'px';
+                
+                this.style.position = 'relative';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Parallax effect on scroll (only for home page)
+        window.addEventListener('scroll', () => {
+            const currentPage = document.querySelector('.page.active');
+            if (currentPage && currentPage.id === 'home') {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+                document.body.style.backgroundPosition = `center ${rate}px`;
+            }
+        });
+
+        // Card hover effects
+        document.querySelectorAll('.course-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Initialize the application
+        showPage('home');
+    </script>
+
+    <!-- About Page -->
+    <div id="about" class="page">
+        <div class="course-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('home')">
+                    ← Back to Home
+                </button>
+                
+                <div class="course-header">
+                    <h1>About CodeLearn</h1>
+                    <p>Empowering developers worldwide through quality education</p>
+                </div>
+
+                <div class="course-content">
+                    <h2>Our Mission</h2>
+                    <p>At CodeLearn, we believe that programming education should be accessible, engaging, and practical. Our mission is to provide world-class programming education that prepares students for real-world development challenges.</p>
+                    
+                    <h2>Why Choose CodeLearn?</h2>
+                    <div class="curriculum-grid">
+                        <div class="module">
+                            <h3>Expert Instructors</h3>
+                            <ul>
+                                <li>Industry professionals with 10+ years experience</li>
+                                <li>Active open-source contributors</li>
+                                <li>Certified technical trainers</li>
+                                <li>Regular industry updates</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Hands-On Learning</h3>
+                            <ul>
+                                <li>Interactive coding exercises</li>
+                                <li>Real-world projects</li>
+                                <li>Code reviews and feedback</li>
+                                <li>Portfolio development</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Community Support</h3>
+                            <ul>
+                                <li>24/7 student forums</li>
+                                <li>Peer programming sessions</li>
+                                <li>Mentorship programs</li>
+                                <li>Career guidance</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Industry Recognition</h3>
+                            <ul>
+                                <li>Certificates valued by employers</li>
+                                <li>Job placement assistance</li>
+                                <li>Alumni network</li>
+                                <li>Continuing education</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="enroll-section">
+                        <h2>Join Our Community</h2>
+                        <p>Over 50,000 students have already started their programming journey with us</p>
+                        <button class="enroll-button" onclick="showPage('home')">Explore Courses</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="page">
+        <div class="course-page">
+            <div class="container">
+                <button class="back-button" onclick="showPage('home')">
+                    ← Back to Home
+                </button>
+                
+                <div class="course-header">
+                    <h1>Contact Us</h1>
+                    <p>We're here to help you on your learning journey</p>
+                </div>
+
+                <div class="course-content">
+                    <div class="curriculum-grid">
+                        <div class="module">
+                            <h3>Get in Touch</h3>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="padding: 1rem 0; border-bottom: 1px solid #eee;">
+                                    <strong>📧 Email:</strong> support@codelearn.com
+                                </li>
+                                <li style="padding: 1rem 0; border-bottom: 1px solid #eee;">
+                                    <strong>📞 Phone:</strong> +1 (555) 123-4567
+                                </li>
+                                <li style="padding: 1rem 0; border-bottom: 1px solid #eee;">
+                                    <strong>💬 Live Chat:</strong> Available 24/7 on our platform
+                                </li>
+                                <li style="padding: 1rem 0;">
+                                    <strong>🏢 Address:</strong> 123 Tech Street, Silicon Valley, CA 94000
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="module">
+                            <h3>Support Hours</h3>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                                    <strong>Monday - Friday:</strong> 9:00 AM - 8:00 PM PST
+                                </li>
+                                <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                                    <strong>Saturday:</strong> 10:00 AM - 6:00 PM PST
+                                </li>
+                                <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">
+                                    <strong>Sunday:</strong> 12:00 PM - 4:00 PM PST
+                                </li>
+                                <li style="padding: 0.5rem 0;">
+                                    <strong>Emergency Support:</strong> Available 24/7
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="enroll-section">
+                        <h2>Have Questions?</h2>
+                        <p>Our support team is ready to help you succeed in your programming journey</p>
+                        <button class="enroll-button" onclick="alert('Contact form would be implemented here in a real application')">Send Message</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 CodeLearn. Empowering developers worldwide.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Page navigation functionality
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show the selected page
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+                // Scroll to top when changing pages
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // Scroll to section within the home page
+        function scrollToSection(sectionId) {
+            // First ensure we're on the home page
+            showPage('home');
+            
+            // Then scroll to the section after a brief delay
+            setTimeout(() => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }, 100);
+        }
+
+        // Smooth scrolling for navigation links (legacy support)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                scrollToSection(targetId);
+            });
+        });
+
+        // Add click animation to course cards and buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            // Course card start buttons
+            document.querySelectorAll('.start-button').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    // Create ripple effect
+                    const ripple = document.createElement('span');
+                    ripple.style.cssText = `
+                        position: absolute;
+                        border-radius: 50%;
+                        background: rgba(255,255,255,0.6);
+                        transform: scale(0);
+                        animation: ripple 0.6s linear;
+                        pointer-events: none;
+                    `;
+                    
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    ripple.style.width = ripple.style.height = size + 'px';
+                    ripple.style.left = (rect.width / 2 - size / 2) + 'px';
+                    ripple.style.top = (rect.height / 2 - size / 2) + 'px';
+                    
+                    this.style.position = 'relative';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+
+            // Enroll buttons
+            document.querySelectorAll('.enroll-button').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (this.textContent.includes('Enroll')) {
+                        e.stopPropagation();
+                        alert('Enrollment system would be implemented here. This would redirect to payment processing.');
+                    }
+                });
+            });
+        });
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Parallax effect on scroll (only for home page)
+        window.addEventListener('scroll', () => {
+            const currentPage = document.querySelector('.page.active');
+            if (currentPage && currentPage.id === 'home') {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+                document.body.style.backgroundPosition = `center ${rate}px`;
+            }
+        });
+
+        // Card hover effects
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.course-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ensure home page is shown by default
+            showPage('home');
+        });
+    </script>
+</body>
+</html>
