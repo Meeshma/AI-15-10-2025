@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Don Bosco Tech — Who We Are</title>
+  <style>
+    :root{--accent:#004b87;--muted:#666}
+    body{font-family:Arial,sans-serif;margin:0;color:#222;line-height:1.6}
+
+    /* Header with background slideshow */header{
+  position:relative;
+  height:110vh;   /* a little bigger than full screen */
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start; /* align content toward top */
+  padding-top:60px;           /* push content slightly down */
+  z-index:1;
+  overflow:hidden;
+  text-shadow:1px 1px 4px rgba(0,0,0,0.7);
+}
+
+
+    .header-slides{
+      position:absolute;
+      top:0;left:0;width:100%;height:100%;
+      z-index:1;
+    }
+    .header-slides img{
+      position:absolute;
+      top:0;left:0;width:100%;height:100%;
+      object-fit:cover;   /* fully fills screen */
+      opacity:0;
+      animation:slideShow 60s infinite;
+      filter:none;
+    }
+
+    .header-slides img:nth-child(1){animation-delay:0s}
+    .header-slides img:nth-child(2){animation-delay:10s}
+    .header-slides img:nth-child(3){animation-delay:20s}
+    .header-slides img:nth-child(4){animation-delay:30s}
+    .header-slides img:nth-child(5){animation-delay:40s}
+    .header-slides img:nth-child(6){animation-delay:50s}
+
+    @keyframes slideShow{
+      0%   {opacity:0}
+      5%   {opacity:1}
+      20%  {opacity:1}
+      25%  {opacity:0}
+      100% {opacity:0}
+    }
+
+    .container{max-width:1100px;margin:0 auto;padding:24px;position:relative;z-index:3;animation:fadeIn 2s ease-out}
+    .brand{display:flex;align-items:center;gap:12px;animation:fadePulse 12s infinite}
+    .brand h1{
+  margin:0;
+  font-size:64px;   /* bigger heading */
+  font-weight:bold; /* makes it stand out */
+}
+
+    .logo{height:80px;width:auto;display:block}
+    nav{margin-top:16px;animation:fadePulse 12s infinite}
+    nav a{color:#fff;margin-right:20px;text-decoration:none;font-size:20px}
+
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(20px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    @keyframes fadePulse{
+      0%,100%{opacity:1}
+      50%{opacity:0.9}
+    }
+
+    /* Sections */
+    section{padding:60px 0}
+    .hero{display:grid;grid-template-columns:1fr;gap:24px;align-items:center;margin-top:0}
+    .hero h2{font-size:40px;margin:0}
+    .hero p{color:var(--muted);font-size:18px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:28px}
+    .card{background:#fff;border-radius:12px;padding:22px;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+    .card h3{margin:0 0 10px;font-size:22px}
+
+    footer{background:#f6f8fb;padding:20px;margin-top:40px;color:#333;text-align:center}
+
+    @media(min-width:820px){
+      .hero{grid-template-columns: 1fr 360px}
+      .hero h2{font-size:46px}
+    }
+
+    input,textarea{width:100%;padding:14px;border:1px solid #ddd;border-radius:6px;font-size:16px}
+    button{background:var(--accent);color:#fff;padding:14px 20px;border:none;border-radius:6px;cursor:pointer;font-size:16px}
+    .muted{color:var(--muted);font-size:14px}
+
+    /* 🔥 Scroll animation classes */
+    .reveal{
+      opacity:0;
+      transform:translateY(40px);
+      transition:all 0.8s ease-out;
+    }
+    .reveal.active{
+      opacity:1;
+      transform:translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- Background Slideshow Images -->
+    <div class="header-slides">
+      <img src="bg1.jpeg" alt="Background 1">
+      <img src="bg2.jpeg" alt="Background 2">
+      <img src="bg3.jpeg" alt="Background 3">
+      <img src="bg4.jpeg" alt="Background 4">
+      <img src="bg5.jpeg" alt="Background 5">
+      <img src="bg6.jpeg" alt="Background 6">
+    </div>
+
+    <!-- Navbar -->
+<div class="navbar" style="position:absolute; top:0; left:0; width:100%; display:flex; justify-content:space-between; align-items:center; padding:15px 50px; box-sizing:border-box; z-index:10;">
+
+  <!-- Brand -->
+  <div class="brand" style="display:flex; align-items:center; gap:15px;">
+    <img src="logo.jpg" alt="Don Bosco Tech Logo" style="height:60px; width:auto;">
+    <h1 style="margin:0; font-size:28px; font-weight:bold; color:#fff;">Don Bosco Tech</h1>
+  </div>
+
+  <!-- Navigation Links -->
+  <nav style="display:flex; gap:25px;">
+    <a href="#who" style="color:#fff; text-decoration:none; font-weight:500; font-size:18px;">Who We Are</a>
+    <a href="#approach" style="color:#fff; text-decoration:none; font-weight:500; font-size:18px;">Our Approach</a>
+    <a href="#team" style="color:#fff; text-decoration:none; font-weight:500; font-size:18px;">Our Team</a>
+    <a href="#contact" style="color:#fff; text-decoration:none; font-weight:500; font-size:18px;">Contact</a>
+  </nav>
+
+</div>
+
+  </header>
+
+  <main class="container">
+    <section id="who" class="hero">
+      <div>
+        <h2 class="reveal">Who We Are</h2>
+        <p class="muted reveal">Don Bosco Tech addresses the gap between employment opportunities and people with compatible skill-sets.</p>
+        <div class="cards reveal">
+          <div class="card"><h3>300+ Training Centres</h3><p class="muted">Nationwide network.</p></div>
+          <div class="card"><h3>800+ Employees</h3><p class="muted">Across 29 states.</p></div>
+          <div class="card"><h3>Market-driven Courses</h3><p class="muted">Aligned with employers.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="approach">
+      <h2 class="reveal">Our Approach</h2>
+      <p class="muted reveal">We combine curriculum, training, and mentoring.</p>
+    </section>
+
+    <section id="team">
+      <h2 class="reveal">Our Team</h2>
+      <div class="cards reveal" id="team-list"></div>
+    </section>
+
+    <section id="contact">
+      <h2 class="reveal">Contact & Subscribe</h2>
+      <form id="subscribe-form" class="reveal" onsubmit="return subscribe(event)">
+        <input type="email" name="email" placeholder="Your email" required>
+        <button type="submit">Subscribe</button>
+        <div id="subscribe-result" class="muted"></div>
+      </form>
+      <form id="contact-form" class="reveal" onsubmit="return contact(event)">
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Your email" required>
+        <textarea name="message" rows="4" placeholder="Message" required></textarea>
+        <button type="submit">Send Message</button>
+        <div id="contact-result" class="muted"></div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© Don Bosco Tech Society</div>
+  </footer>
+
+  <script>
+    // Reveal on scroll
+    function revealOnScroll(){
+      document.querySelectorAll('.reveal').forEach(el=>{
+        const rect = el.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 60){
+          el.classList.add('active');
+        }
+      });
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+
+    async function fetchTeam(){
+      const r = await fetch('/api/team'); 
+      const data = await r.json();
+      document.getElementById('team-list').innerHTML = data.map(t=>`<div class="card"><h3>${t.name}</h3><p class="muted">${t.role}</p></div>`).join('');
+      revealOnScroll(); // ensure new cards animate
+    }
+    fetchTeam();
+
+    async function subscribe(e){
+      e.preventDefault();
+      const email = e.target.email.value;
+      const r = await fetch('/api/subscribe',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email})});
+      document.getElementById('subscribe-result').textContent=(await r.json()).message;
+    }
+
+    async function contact(e){
+      e.preventDefault();
+      const payload={name:e.target.name.value,email:e.target.email.value,message:e.target.message.value};
+      const r=await fetch('/api/contact',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)});
+      document.getElementById('contact-result').textContent=(await r.json()).message;
+    }
+  </script>
+</body>
+</html>

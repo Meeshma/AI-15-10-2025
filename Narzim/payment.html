@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Payment Page</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; background: #f3d4f7;">
+
+  <div style="max-width: 600px; margin: 3rem auto; background: #ffffff; padding: 2rem; border-radius: 12px; box-shadow: 0 6px 12px rgba(0,0,0,0.1);">
+    
+    <h2 style="text-align: center; margin-bottom: 1rem; color: #667eea;">Secure Payment</h2>
+    <p style="text-align: center; color: #666; margin-bottom: 2rem;">Complete your booking by making payment</p>
+
+    <!-- Payment Form -->
+    <form id="paymentForm">
+      <label>Full Name</label>
+      <input type="text" required 
+        style="width: 100%; padding: 0.8rem; margin: 0.5rem 0 1rem; border: 1px solid #ccc; border-radius: 8px;">
+
+      <label>Email</label>
+      <input type="email" required 
+        style="width: 100%; padding: 0.8rem; margin: 0.5rem 0 1rem; border: 1px solid #ccc; border-radius: 8px;">
+
+      <label>Card Number</label>
+      <input type="text" maxlength="16" required placeholder="1234 5678 9012 3456"
+        style="width: 100%; padding: 0.8rem; margin: 0.5rem 0 1rem; border: 1px solid #ccc; border-radius: 8px;">
+
+      <div style="display: flex; gap: 1rem;">
+        <div style="flex: 1;">
+          <label>Expiry Date</label>
+          <input type="text" maxlength="5" placeholder="MM/YY" required
+            style="width: 100%; padding: 0.8rem; margin: 0.5rem 0 1rem; border: 1px solid #ccc; border-radius: 8px;">
+        </div>
+        <div style="flex: 1;">
+          <label>CVV</label>
+          <input type="password" maxlength="3" required placeholder="123"
+            style="width: 100%; padding: 0.8rem; margin: 0.5rem 0 1rem; border: 1px solid #cccccc; border-radius: 8px;">
+        </div>
+      </div>
+
+      <button type="submit" 
+        style="width: 100%; padding: 0.8rem; margin-top: 1rem; border: none; background: #667eea; color: white; font-size: 1.1rem; border-radius: 8px; cursor: pointer;">
+        Pay Now
+      </button>
+    </form>
+
+    <p style="text-align: center; margin-top: 1.5rem; color: #999; font-size: 0.9rem;">
+      🔒 Your payment details are secured with SSL encryption.
+    </p>
+  </div>
+
+  
+    <script>
+document.getElementById("paymentForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  alert("✅ Payment successful! Thank you for booking.");
+  window.location.href = "thankyou.html"; // after payment
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderlust Destinations - Your Dream Journey Awaits</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .back-home-btn {
+            display: none;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%2387CEEB;stop-opacity:1" /><stop offset="100%" style="stop-color:%23E0F6FF;stop-opacity:1" /></linearGradient></defs><rect fill="url(%23sky)" width="1200" height="800"/><path fill="%23228B22" d="M0 600l50-16.7c50-16.6 150-50 250-50s200 33.4 250 50l50 16.7v200H0z"/><path fill="%2332CD32" d="M300 650l100-20 150 10 200-15 150 25 200-10v160H300z"/><circle fill="%23FFD700" cx="900" cy="120" r="60"/><rect fill="%238B4513" x="100" y="500" width="15" height="100"/><circle fill="%23228B22" cx="107" cy="480" r="25"/><rect fill="%238B4513" x="800" y="520" width="12" height="80"/><circle fill="%23228B22" cx="806" cy="505" r="20"/></svg>') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 35px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button.secondary {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            box-shadow: 0 10px 30px rgba(116, 185, 255, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
+        }
+
+        .cta-button.secondary:hover {
+            box-shadow: 0 15px 40px rgba(116, 185, 255, 0.6);
+        }
+
+        /* Page Content */
+        .page-content {
+            display: none;
+            padding: 100px 2rem 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: calc(100vh - 150px);
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .card-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-top: 1rem;
+        }
+
+        .card-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+        }
+
+        /* Package Features */
+        .package-features {
+            margin: 1rem 0;
+            padding: 0;
+        }
+
+        .package-features li {
+            margin-bottom: 0.5rem;
+            color: #666;
+            list-style: none;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .package-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        /* Book Now Button */
+        .book-now-btn {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .book-now-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Destination Detail View */
+        .destination-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-radius: 20px;
+        }
+
+        .destination-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .destination-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        .tab-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #74b9ff;
+        }
+
+        .footer-section a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: #74b9ff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease;
+        }
+
+        /* Booking Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            animation: fadeInUp 0.5s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .destination-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .destination-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo" onclick="showHome()">Wanderlust Destinations</div>
+            <button class="back-home-btn" id="backHomeBtn" onclick="showHome()">← Back to Home</button>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a onclick="showHome()" class="nav-link active">Home</a></li>
+                <li><a onclick="showDestinations()" class="nav-link">Destinations</a></li>
+                <li><a onclick="showAbout()" class="nav-link">About</a></li>
+                <li><a onclick="showContact()" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home-hero">
+        <div class="hero-content">
+            <h1>Discover Amazing Places</h1>
+            <p>Embark on unforgettable adventures and create memories that last a lifetime</p>
+            <div class="cta-buttons">
+                <button class="cta-button" onclick="showDestinations()">🌍 Explore Destinations</button>
+                <button class="cta-button secondary" onclick="showBookingModal()">📅 Book Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Home Page Content -->
+    <div class="page-content active" id="home-content">
+        <h2 class="page-title">Why Choose Wanderlust?</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-image">🌟</div>
+                <h3>Expert Guidance</h3>
+                <p>Our experienced travel experts create personalized itineraries tailored to your preferences and budget.</p>
+            </div>
+            <div class="card">
+                <div class="card-image">🏆</div>
+                <h3>Award-Winning Service</h3>
+                <p>Recognized for excellence in customer service and innovative travel experiences across the globe.</p>
+            </div>
+            <div class="card">
+                <div class="card-image">🌍</div>
+                <h3>Global Network</h3>
+                <p>Access to exclusive destinations and local partnerships in over 150 countries worldwide.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Destinations Page -->
+    <div class="page-content" id="destinations-content">
+        <h2 class="page-title">Choose Your Destination</h2>
+        <p class="page-subtitle">Discover breathtaking locations around the world</p>
+        
+        <div class="cards-grid">
+            <div class="card" onclick="showDestinationDetail('paris')">
+                <div class="card-image">🗼</div>
+                <h3>Paris, France</h3>
+                <p>The City of Light offers romantic boulevards, world-class museums, and iconic landmarks like the Eiffel Tower.</p>
+                <div class="card-price">Packages from Rs. 1,299</div>
+            </div>
+            <div class="card" onclick="showDestinationDetail('tokyo')">
+                <div class="card-image">🏯</div>
+                <h3>Tokyo, Japan</h3>
+                <p>Experience the perfect blend of ancient traditions and cutting-edge technology in Japan's vibrant capital.</p>
+                <div class="card-price">Packages from Rs.1,599</div>
+            </div>
+            <div class="card" onclick="showDestinationDetail('bali')">
+                <div class="card-image">🏝️</div>
+                <h3>Bali, Indonesia</h3>
+                <p>Tropical paradise with stunning beaches, ancient temples, and lush rice terraces in Southeast Asia.</p>
+                <div class="card-price">Packages from Rs.899</div>
+            </div>
+            <div class="card" onclick="showDestinationDetail('santorini')">
+                <div class="card-image">🏛️</div>
+                <h3>Santorini, Greece</h3>
+                <p>Breathtaking sunsets, whitewashed buildings, and crystal-clear waters make this island unforgettable.</p>
+                <div class="card-price">Packages from Rs.1,199</div>
+            </div>
+            <div class="card" onclick="showDestinationDetail('maldives')">
+                <div class="card-image">🏖️</div>
+                <h3>Maldives</h3>
+                <p>Ultimate luxury destination with overwater bungalows, pristine beaches, and incredible marine life.</p>
+                <div class="card-price">Packages from Rs.2,299</div>
+            </div>
+            <div class="card" onclick="showDestinationDetail('dubai')">
+                <div class="card-image">🏢</div>
+                <h3>Dubai, UAE</h3>
+                <p>Modern metropolis with stunning architecture, luxury shopping, and world-class entertainment.</p>
+                <div class="card-price">Packages from Rs.1,499</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Destination Detail Page -->
+    <div class="page-content" id="destination-detail-content">
+        <div class="destination-header" id="destination-header">
+            <!-- Destination specific header will be populated by JavaScript -->
+        </div>
+
+        <div class="destination-tabs">
+            <button class="tab-button active" onclick="showTab('packages')">Travel Packages</button>
+            <button class="tab-button" onclick="showTab('hotels')">Hotels & Resorts</button>
+            <button class="tab-button" onclick="showTab('activities')">Activities</button>
+        </div>
+
+        <!-- Packages Tab -->
+        <div class="tab-content active" id="packages-tab">
+            <div class="cards-grid" id="packages-grid">
+                <!-- Packages will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Hotels Tab -->
+        <div class="tab-content" id="hotels-tab">
+            <div class="cards-grid" id="hotels-grid">
+                <!-- Hotels will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Activities Tab -->
+        <div class="tab-content" id="activities-tab">
+            <div class="cards-grid" id="activities-grid">
+                <!-- Activities will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- About Page -->
+    <div class="page-content" id="about-content">
+        <h2 class="page-title">About Wanderlust Destinations</h2>
+        <p class="page-subtitle">Your trusted partner in creating extraordinary travel experiences since 1995</p>
+        
+        <div style="text-align: center; margin: 3rem 0;">
+            <p style="font-size: 1.2rem; line-height: 1.8; color: #555; max-width: 800px; margin: 0 auto;">
+                For over 25 years, Wanderlust Destinations has been crafting unforgettable travel experiences for adventurers, families, and luxury travelers alike. We believe that travel has the power to transform lives, broaden perspectives, and create lasting memories.
+            </p>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-image">🎯</div>
+                <h3>Our Mission</h3>
+                <p>To inspire and enable meaningful travel experiences that connect people with diverse cultures and breathtaking landscapes.</p>
+            </div>
+            <div class="card">
+                <div class="card-image">🌱</div>
+                <h3>Sustainable Tourism</h3>
+                <p>We partner with eco-conscious hotels and local businesses to support sustainable tourism practices worldwide.</p>
+            </div>
+            <div class="card">
+                <div class="card-image">🤝</div>
+                <h3>Local Partnerships</h3>
+                <p>Our network of local partners ensures authentic experiences and supports communities in destinations globally.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Page -->
+    <div class="page-content" id="contact-content">
+        <h2 class="page-title">Get In Touch</h2>
+        <p class="page-subtitle">Ready to plan your next adventure? Our travel experts are here to help</p>
+        
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-image">📧</div>
+                <h3>Email Us</h3>
+                <p><strong>Bookings:</strong><br>bookings@wanderlust.com</p>
+                <p><strong>Support:</strong><br>support@wanderlust.com</p>
+            </div>
+            <div class="card">
+                <div class="card-image">📞</div>
+                <h3>Call Us</h3>
+                <p><strong>Main Office:</strong><br>+1 (555) 123-TRAVEL</p>
+                <p><strong>24/7 Emergency:</strong><br>+1 (555) 999-HELP</p>
+            </div>
+            <div class="card">
+                <div class="card-image">📍</div>
+                <h3>Visit Us</h3>
+                <p><strong>Headquarters:</strong><br>123 Adventure Boulevard<br>Travel City, TC 12345</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeBookingModal()">&times;</span>
+            <h2 style="color:#667eea; margin-bottom:2rem;">Book Your Dream Trip</h2>
+            
+            <form onsubmit="handleBooking(event)">
+                <div class="form-group">
+                    <label for="book-destination">Selected Package *</label>
+                    <input type="text" id="book-destination" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="book-name">Full Name *</label>
+                    <input type="text" id="book-name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="book-email">Email Address *</label>
+                    <input type="email" id="book-email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="book-phone">Phone Number *</label>
+                    <input type="tel" id="book-phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="book-travelers">Number of Travelers *</label>
+                    <select id="book-travelers" required>
+                        <option value="">Select travelers</option>
+                        <option value="1">1 Person</option>
+                        <option value="2">2 People</option>
+                        <option value="3">3 People</option>
+                        <option value="4">4 People</option>
+                        <option value="5+">5+ People</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="book-checkin">Travel Date *</label>
+                    <input type="date" id="book-checkin" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="book-notes">Special Requests</label>
+                    <textarea id="book-notes" rows="3" placeholder="Any special requirements or preferences..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Booking Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Wanderlust Destinations</h3>
+                <p>Creating extraordinary travel experiences since 1995. Your journey to amazing destinations starts here.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#" onclick="showDestinations()">Destinations</a>
+                <a href="#" onclick="showAbout()">About Us</a>
+                <a href="#" onclick="showContact()">Contact</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>📧 info@wanderlust.com</p>
+                <p>📞 +1 (555) 123-TRAVEL</p>
+                <p>📍 123 Adventure Boulevard</p>
+                <p>Travel City, TC 12345</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Wanderlust Destinations. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Destination data with packages, hotels, and activities
+        const destinationData = {
+            paris: {
+                name: "Paris, France",
+                emoji: "🗼",
+                description: "The City of Light offers romantic boulevards, world-class museums, and iconic landmarks.",
+                packages: [
+                    {
+                        name: "Romantic Paris Getaway",
+                        price: "Rs.1,299",
+                        features: [
+                            "5 days, 4 nights accommodation",
+                            "Seine River dinner cruise",
+                            "Eiffel Tower skip-the-line tickets",
+                            "Louvre Museum guided tour",
+                            "Champagne tasting in Montmartre",
+                            "Private photography session"
+                        ]
+                    },
+                    {
+                        name: "Paris Art & Culture",
+                        price: "Rs.1,599",
+                        features: [
+                            "7 days, 6 nights accommodation",
+                            "Versailles Palace day trip",
+                            "All major museums included",
+                            "French cooking class",
+                            "Opera house performance tickets",
+                            "Expert art historian guide"
+                        ]
+                    },
+                    {
+                        name: "Paris Family Adventure",
+                        price: "Rs.2,199",
+                        features: [
+                            "6 days, 5 nights family accommodation",
+                            "Disneyland Paris 2-day passes",
+                            "Seine boat tour for families",
+                            "Interactive museum visits",
+                            "Picnic in Luxembourg Gardens",
+                            "Kid-friendly restaurant selections"
+                        ]
+                    }
+                ],
+                hotels: [
+                    {
+                        name: "Grand Palace Hotel",
+                        rating: "⭐⭐⭐⭐⭐",
+                        price: "Rs.450/night",
+                        features: [
+                            "Luxury 5-star accommodation",
+                            "Eiffel Tower views",
+                            "Michelin-starred restaurant",
+                            "Full-service spa",
+                            "Concierge service",
+                            "Airport transfers included"
+                        ]
+                    },
+                    {
+                        name: "Boutique Marais Hotel",
+                        rating: "⭐⭐⭐⭐",
+                        price: "Rs.280/night",
+                        features: [
+                            "Historic district location",
+                            "Stylish modern rooms",
+                            "Rooftop terrace bar",
+                            "Walking distance to attractions",
+                            "24-hour room service",
+                            "Pet-friendly options"
+                        ]
+                    }
+                ],
+                activities: [
+                    {
+                        name: "Seine River Cruise",
+                        price: "Rs.45/person",
+                        features: [
+                            "1-hour scenic cruise",
+                            "Audio commentary in 12 languages",
+                            "Views of Notre-Dame",
+                            "Professional photography",
+                            "Champagne upgrade available",
+                            "Evening illumination tours"
+                        ]
+                    },
+                    {
+                        name: "Cooking Class Experience",
+                        price: "Rs.125/person",
+                        features: [
+                            "3-hour hands-on class",
+                            "Professional chef instructor",
+                            "Market visit included",
+                            "3-course meal preparation",
+                            "Wine pairing session",
+                            "Recipe booklet to take home"
+                        ]
+                    }
+                ]
+            },
+            tokyo: {
+                name: "Tokyo, Japan",
+                emoji: "🏯",
+                description: "Experience the perfect blend of ancient traditions and cutting-edge technology.",
+                packages: [
+                    {
+                        name: "Tokyo Cultural Discovery",
+                        price: "Rs.1,599",
+                        features: [
+                            "6 days, 5 nights accommodation",
+                            "Traditional ryokan experience",
+                            "Sushi making workshop",
+                            "Mount Fuji day trip",
+                            "Tea ceremony experience",
+                            "Shibuya and Harajuku tours"
+                        ]
+                    },
+                    {
+                        name: "Modern Tokyo Explorer",
+                        price: "Rs.1,799",
+                        features: [
+                            "7 days, 6 nights accommodation",
+                            "Robot restaurant show",
+                            "Skytree observation deck",
+                            "Anime and manga tours",
+                            "High-tech district visits",
+                            "Gaming arcade experiences"
+                        ]
+                    },
+                    {
+                        name: "Tokyo Foodie Adventure",
+                        price: "Rs.2,099",
+                        features: [
+                            "8 days, 7 nights accommodation",
+                            "Tsukiji fish market tour",
+                            "Michelin-starred dining",
+                            "Ramen and sake tastings",
+                            "Street food walking tours",
+                            "Cooking classes with locals"
+                        ]
+                    }
+                ],
+                hotels: [
+                    {
+                        name: "Tokyo Imperial Hotel",
+                        rating: "⭐⭐⭐⭐⭐",
+                        price: "Rs.380/night",
+                        features: [
+                            "Iconic luxury hotel",
+                            "Traditional Japanese service",
+                            "Multiple dining options",
+                            "Onsen hot springs",
+                            "Central Tokyo location",
+                            "Business center facilities"
+                        ]
+                    },
+                    {
+                        name: "Shibuya Modern Hotel",
+                        rating: "⭐⭐⭐⭐",
+                        price: "Rs.220/night",
+                        features: [
+                            "Contemporary design",
+                            "Shibuya crossing views",
+                            "Tech-integrated rooms",
+                            "Rooftop bar",
+                            "Fitness center",
+                            "Shopping district access"
+                        ]
+                    }
+                ],
+                activities: [
+                    {
+                        name: "Mount Fuji Day Trip",
+                        price: "Rs.189/person",
+                        features: [
+                            "Full day guided tour",
+                            "Lake Kawaguchi visit",
+                            "Traditional lunch included",
+                            "Cable car ride",
+                            "Photo opportunities",
+                            "English-speaking guide"
+                        ]
+                    },
+                    {
+                        name: "Sushi Making Class",
+                        price: "Rs.95/person",
+                        features: [
+                            "2-hour hands-on class",
+                            "Master sushi chef instructor",
+                            "Fresh fish selection",
+                            "Traditional techniques",
+                            "All tools provided",
+                            "Certificate of completion"
+                        ]
+                    }
+                ]
+            },
+            bali: {
+                name: "Bali, Indonesia",
+                emoji: "🏝️",
+                description: "Tropical paradise with stunning beaches, ancient temples, and lush rice terraces.",
+                packages: [
+                    {
+                        name: "Bali Beach Paradise",
+                        price: "Rs.899",
+                        features: [
+                            "7 days, 6 nights beachfront villa",
+                            "Daily spa treatments",
+                            "Surfing lessons included",
+                            "Sunset dinner cruises",
+                            "Beach club access",
+                            "Airport transfers"
+                        ]
+                    },
+                    {
+                        name: "Cultural Bali Experience",
+                        price: "Rs.1,199",
+                        features: [
+                            "8 days, 7 nights accommodation",
+                            "Temple tours with guide",
+                            "Traditional dance performances",
+                            "Cooking class with local family",
+                            "Rice terrace trekking",
+                            "Artisan village visits"
+                        ]
+                    },
+                    {
+                        name: "Bali Wellness Retreat",
+                        price: "Rs.1,499",
+                        features: [
+                            "10 days, 9 nights retreat",
+                            "Daily yoga sessions",
+                            "Meditation workshops",
+                            "Organic meals included",
+                            "Spa treatments",
+                            "Detox programs"
+                        ]
+                    }
+                ],
+                hotels: [
+                    {
+                        name: "Luxury Beach Resort",
+                        rating: "⭐⭐⭐⭐⭐",
+                        price: "Rs.320/night",
+                        features: [
+                            "Beachfront location",
+                            "Private pool villas",
+                            "World-class spa",
+                            "Multiple restaurants",
+                            "Water sports center",
+                            "Butler service"
+                        ]
+                    },
+                    {
+                        name: "Ubud Jungle Lodge",
+                        rating: "⭐⭐⭐⭐",
+                        price: "Rs.180/night",
+                        features: [
+                            "Rainforest setting",
+                            "Eco-friendly design",
+                            "Yoga pavilion",
+                            "Organic restaurant",
+                            "Nature walks",
+                            "Cultural activities"
+                        ]
+                    }
+                ],
+                activities: [
+                    {
+                        name: "Volcano Sunrise Trek",
+                        price: "Rs.65/person",
+                        features: [
+                            "Pre-dawn departure",
+                            "Mount Batur climbing",
+                            "Sunrise viewing",
+                            "Breakfast on summit",
+                            "Hot springs visit",
+                            "Professional guide"
+                        ]
+                    },
+                    {
+                        name: "Traditional Cooking Class",
+                        price: "Rs.55/person",
+                        features: [
+                            "Market tour included",
+                            "Local family experience",
+                            "Authentic recipes",
+                            "Hands-on preparation",
+                            "Family-style dining",
+                            "Recipe collection"
+                        ]
+                    }
+                ]
+            },
+            santorini: {
+                name: "Santorini, Greece",
+                emoji: "🏛️",
+                description: "Breathtaking sunsets, whitewashed buildings, and crystal-clear waters.",
+                packages: [
+                    {
+                        name: "Santorini Sunset Romance",
+                        price: "Rs.1,199",
+                        features: [
+                            "5 days, 4 nights cave hotel",
+                            "Private sunset dinner",
+                            "Couples spa treatments",
+                            "Wine tasting tours",
+                            "Catamaran sailing trip",
+                            "Photography session"
+                        ]
+                    },
+                    {
+                        name: "Greek Island Explorer",
+                        price: "Rs.1,599",
+                        features: [
+                            "7 days, 6 nights accommodation",
+                            "Multi-island ferry passes",
+                            "Archaeological site visits",
+                            "Traditional village tours",
+                            "Greek cooking classes",
+                            "Historical guided tours"
+                        ]
+                    },
+                    {
+                        name: "Santorini Luxury Escape",
+                        price: "Rs.2,299",
+                        features: [
+                            "6 days, 5 nights luxury suite",
+                            "Private infinity pool",
+                            "Personal concierge service",
+                            "Helicopter tours",
+                            "Fine dining experiences",
+                            "Exclusive beach access"
+                        ]
+                    }
+                ],
+                hotels: [
+                    {
+                        name: "Caldera View Resort",
+                        rating: "⭐⭐⭐⭐⭐",
+                        price: "Rs.520/night",
+                        features: [
+                            "Clifftop location",
+                            "Infinity pools",
+                            "Sunset views",
+                            "Cave-style suites",
+                            "Fine dining restaurant",
+                            "Spa services"
+                        ]
+                    },
+                    {
+                        name: "Traditional Village Hotel",
+                        rating: "⭐⭐⭐⭐",
+                        price: "Rs.280/night",
+                        features: [
+                            "Authentic Greek architecture",
+                            "Family-run hospitality",
+                            "Local cuisine restaurant",
+                            "Courtyard gardens",
+                            "Cultural activities",
+                            "Personalized service"
+                        ]
+                    }
+                ],
+                activities: [
+                    {
+                        name: "Catamaran Sunset Cruise",
+                        price: "Rs.145/person",
+                        features: [
+                            "5-hour sailing experience",
+                            "Swimming stops",
+                            "BBQ dinner onboard",
+                            "Unlimited drinks",
+                            "Snorkeling equipment",
+                            "Sunset viewing"
+                        ]
+                    },
+                    {
+                        name: "Wine Tasting Tour",
+                        price: "Rs.89/person",
+                        features: [
+                            "Visit 3 local wineries",
+                            "Taste 8 different wines",
+                            "Traditional mezze plates",
+                            "Vineyard tours",
+                            "Wine education",
+                            "Transportation included"
+                        ]
+                    }
+                ]
+            },
+            maldives: {
+                name: "Maldives",
+                emoji: "🏖️",
+                description: "Ultimate luxury destination with overwater bungalows and pristine beaches.",
+                packages: [
+                    {
+                        name: "Overwater Paradise",
+                        price: "Rs.2,299",
+                        features: [
+                            "5 days, 4 nights overwater villa",
+                            "All meals included",
+                            "Seaplane transfers",
+                            "Snorkeling equipment",
+                            "Sunset dolphin cruise",
+                            "Couples massage"
+                        ]
+                    },
+                    {
+                        name: "Maldives Honeymoon",
+                        price: "Rs.2,999",
+                        features: [
+                            "7 days, 6 nights luxury suite",
+                            "Private beach dinners",
+                            "Champagne welcome",
+                            "Spa treatments daily",
+                            "Water sports included",
+                            "Romance package"
+                        ]
+                    },
+                    {
+                        name: "Diving Adventure",
+                        price: "Rs.2,599",
+                        features: [
+                            "8 days, 7 nights accommodation",
+                            "Daily diving trips",
+                            "PADI certification course",
+                            "Equipment rental",
+                            "Underwater photography",
+                            "Marine life tours"
+                        ]
+                    }
+                ],
+                hotels: [
+                    {
+                        name: "Ocean Paradise Resort",
+                        rating: "⭐⭐⭐⭐⭐",
+                        price: "Rs.850/night",
+                        features: [
+                            "Overwater bungalows",
+                            "All-inclusive luxury",
+                            "Private beach access",
+                            "World-class spa",
+                            "Fine dining restaurants",
+                            "Butler service"
+                        ]
+                    },
+                    {
+                        name: "Coral Island Lodge",
+                        rating: "⭐⭐⭐⭐",
+                        price: "Rs.480/night",
+                        features: [
+                            "Beachfront location",
+                            "Eco-friendly design",
+                            "Snorkeling house reef",
+                            "Local cuisine",
+                            "Cultural experiences",
+                            "Sustainability programs"
+                        ]
+                    }
+                ],
+                activities: [
+                    {
+                        name: "Manta Ray Diving",
+                        price: "Rs.195/person",
+                        features: [
+                            "Full day diving trip",
+                            "Professional dive guide",
+                            "Equipment included",
+                            "Lunch on boat",
+                            "Underwater photography",
+                            "Certificate provided"
+                        ]
+                    },
+                    {
+                        name: "Sunset Fishing Trip",
+                        price: "Rs.125/person",
+                        features: [
+                            "Traditional dhoni boat",
+                            "Local fishing techniques",
+                            "Sunset viewing",
+                            "Fresh fish BBQ",
+                            "Cultural experience",
+                            "All equipment provided"
+                        ]
+                    }
+                ]
+            },
+            dubai: {
+                name: "Dubai, UAE",
+                emoji: "🏢",
+                description: "Modern metropolis with stunning architecture and luxury experiences.",
+                packages: [
+                    {
+                        name: "Dubai Luxury Experience",
+                        price: "Rs.1,499",
+                        features: [
+                            "5 days, 4 nights 5-star hotel",
+                            "Burj Khalifa observation deck",
+                            "Desert safari with dinner",
+                            "Dubai Mall shopping tour",
+                            "Helicopter city tour",
+                            "Luxury car transfers"
+                        ]
+                    },
+                    {
+                        name: "Family Dubai Adventure",
+                        price: "Rs.1,899",
+                        features: [
+                            "6 days, 5 nights family suite",
+                            "Theme park passes",
+                            "Aquarium and zoo visits",
+                            "Beach resort access",
+                            "Kids club activities",
+                            "Family-friendly restaurants"
+                        ]
+                    },
+                    {
+                        name: "Dubai Shopping Extravaganza",
+                        price: "Rs.1,299",
+                        features: [
+                            "4 days, 3 nights accommodation",
+                            "Personal shopping assistant",
+                            "Mall tours and discounts",
+                            "Traditional souk visits",
+                            "Fashion show tickets",
+                            "Luxury brand access"
+                        ]
+                    }
+                ],
+                hotels: [
+                    {
+                        name: "Burj Al Arab",
+                        rating: "⭐⭐⭐⭐⭐",
+                        price: "Rs.1200/night",
+                        features: [
+                            "World's most luxurious hotel",
+                            "Suite accommodations only",
+                            "Personal butler service",
+                            "Helicopter transfers",
+                            "Multiple fine dining venues",
+                            "Private beach access"
+                        ]
+                    },
+                    {
+                        name: "Downtown Dubai Hotel",
+                        rating: "⭐⭐⭐⭐",
+                        price: "Rs.320/night",
+                        features: [
+                            "Modern luxury accommodation",
+                            "Burj Khalifa views",
+                            "Rooftop pool",
+                            "Multiple restaurants",
+                            "Shopping mall connection",
+                            "Business facilities"
+                        ]
+                    }
+                ],
+                activities: [
+                    {
+                        name: "Desert Safari Adventure",
+                        price: "Rs.89/person",
+                        features: [
+                            "Dune bashing experience",
+                            "Camel riding",
+                            "Traditional BBQ dinner",
+                            "Cultural entertainment",
+                            "Henna painting",
+                            "Sunset photography"
+                        ]
+                    },
+                    {
+                        name: "Dubai Marina Cruise",
+                        price: "Rs.65/person",
+                        features: [
+                            "2-hour luxury yacht cruise",
+                            "Marina and JBR views",
+                            "Welcome drinks",
+                            "Light refreshments",
+                            "Photo opportunities",
+                            "Professional crew"
+                        ]
+                    }
+                ]
+            }
+        };
+
+        let currentDestination = '';
+        let selectedPackage = '';
+
+        // Navigation Functions
+        function showHome() {
+            hideAllPages();
+            document.getElementById('home-hero').style.display = 'flex';
+            document.getElementById('home-content').classList.add('active');
+            updateNavigation('home');
+            hideBackHomeButton();
+        }
+
+        function showDestinations() {
+            hideAllPages();
+            document.getElementById('destinations-content').classList.add('active');
+            updateNavigation('destinations');
+            showBackHomeButton();
+        }
+
+        function showAbout() {
+            hideAllPages();
+            document.getElementById('about-content').classList.add('active');
+            updateNavigation('about');
+            showBackHomeButton();
+        }
+
+        function showContact() {
+            hideAllPages();
+            document.getElementById('contact-content').classList.add('active');
+            updateNavigation('contact');
+            showBackHomeButton();
+        }
+
+        function hideAllPages() {
+            document.getElementById('home-hero').style.display = 'none';
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.classList.remove('active');
+            });
+        }
+
+        function updateNavigation(activePage) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            // Find and activate the correct nav link based on the page
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pageMap = { 'home': 0, 'destinations': 1, 'about': 2, 'contact': 3 };
+            if (pageMap[activePage] !== undefined) {
+                navLinks[pageMap[activePage]].classList.add('active');
+            }
+        }
+
+        function showBackHomeButton() {
+            document.getElementById('backHomeBtn').style.display = 'block';
+        }
+
+        function hideBackHomeButton() {
+            document.getElementById('backHomeBtn').style.display = 'none';
+        }
+
+        // Destination Detail Functions
+        function showDestinationDetail(destinationKey) {
+            currentDestination = destinationKey;
+            const destination = destinationData[destinationKey];
+            
+            hideAllPages();
+            document.getElementById('destination-detail-content').classList.add('active');
+            showBackHomeButton();
+
+            // Update destination header
+            document.getElementById('destination-header').innerHTML = `
+                <div style="font-size: 4rem; margin-bottom: 1rem;">${destination.emoji}</div>
+                <h1>${destination.name}</h1>
+                <p style="font-size: 1.2rem; color: #666;">${destination.description}</p>
+            `;
+
+            // Reset to packages tab
+            showTab('packages');
+            populatePackages(destination.packages);
+            populateHotels(destination.hotels);
+            populateActivities(destination.activities);
+        }
+
+        function showTab(tabName) {
+            // Update tab buttons
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabName + '-tab').classList.add('active');
+        }
+
+        function populatePackages(packages) {
+            const packagesGrid = document.getElementById('packages-grid');
+            packagesGrid.innerHTML = packages.map(pkg => `
+                <div class="card">
+                    <div class="card-image">📦</div>
+                    <h3>${pkg.name}</h3>
+                    <div class="card-price">${pkg.price}</div>
+                    <ul class="package-features">
+                        ${pkg.features.map(feature => `<li>${feature}</li>`).join('')}
+                    </ul>
+                    <button class="book-now-btn" onclick="bookPackage('${pkg.name}', '${pkg.price}')">
+                        Book Now
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function populateHotels(hotels) {
+            const hotelsGrid = document.getElementById('hotels-grid');
+            hotelsGrid.innerHTML = hotels.map(hotel => `
+                <div class="card">
+                    <div class="card-image">🏨</div>
+                    <div class="card-rating">
+                        <span>${hotel.rating}</span>
+                    </div>
+                    <h3>${hotel.name}</h3>
+                    <div class="card-price">${hotel.price}</div>
+                    <ul class="package-features">
+                        ${hotel.features.map(feature => `<li>${feature}</li>`).join('')}
+                    </ul>
+                    <button class="book-now-btn" onclick="bookPackage('${hotel.name}', '${hotel.price}')">
+                        Book Now
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function populateActivities(activities) {
+            const activitiesGrid = document.getElementById('activities-grid');
+            activitiesGrid.innerHTML = activities.map(activity => `
+                <div class="card">
+                    <div class="card-image">🎯</div>
+                    <h3>${activity.name}</h3>
+                    <div class="card-price">${activity.price}</div>
+                    <ul class="package-features">
+                        ${activity.features.map(feature => `<li>${feature}</li>`).join('')}
+                    </ul>
+                    <button class="book-now-btn" onclick="bookPackage('${activity.name}', '${activity.price}')">
+                        Book Now
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Booking Functions
+        function bookPackage(packageName, price) {
+            selectedPackage = `${packageName} - ${price}`;
+            document.getElementById('book-destination').value = selectedPackage;
+            showBookingModal();
+        }
+
+        function showBookingModal() {
+            document.getElementById('bookingModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Set today's date as minimum
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('book-checkin').min = today;
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+       function handleBooking(event) {
+  event.preventDefault();
+
+  const submitBtn = event.target.querySelector('.submit-btn');
+  const originalText = submitBtn.textContent;
+
+  submitBtn.textContent = "Processing...";
+  submitBtn.disabled = true;
+
+  setTimeout(() => {
+    // Redirect directly to payment page
+    window.location.href = "payment.html"; 
+  }, 1500);
+}
+        
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('bookingModal');
+            if (event.target === modal) {
+                closeBookingModal();
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up smooth scrolling
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Add keyboard support for modal
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeBookingModal();
+                }
+            });
+        });
+        
+
+        console.log('🌟 Wanderlust Destinations website loaded successfully!');
+    </script>
+</body>
+</html>
