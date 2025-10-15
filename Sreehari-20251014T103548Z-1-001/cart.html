@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SpeedKart Pre-Booking</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px 20px;
+      z-index: 10;
+    }
+    .navbar a {
+      text-decoration: none;
+      background: #fff;
+      color: #000;
+      padding: 10px 15px;
+      margin-left: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .navbar a:hover {
+      background: #e0e0e0;
+    }
+
+    .hero {
+      position: relative;
+      height: 80vh;
+      width: 100%;
+      background-image: url("helmet.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
+
+    #animatedText {
+      font-size: 3rem;
+      font-weight: bold;
+      letter-spacing: 3px;
+      opacity: 0;
+      animation: fadeInScale 2s forwards;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    }
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .section {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+    .section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .card {
+      background: #f4f4f4;
+      border-radius: 10px;
+      overflow: hidden;
+      width: 250px;
+      cursor: pointer;
+      transition: transform 0.3s;
+      text-decoration: none;
+      color: black;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+    .card h3 {
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    /* Background Music Control Button */
+    #musicControlBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 18px;
+      background-color: #ff6600;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+      transition: background-color 0.3s ease;
+      z-index: 1000;
+    }
+    #musicControlBtn:hover {
+      background-color: #e65c00;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <a href="about.html">About</a>
+    <a href="feedback.html">Feedback</a>
+    <a href="complaints.html">Complaints</a>
+  </div>
+
+  <div class="hero">
+    <div class="overlay">
+      <div id="animatedText">Count The Laps</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Explore Our Options</h2>
+    <div class="cards">
+      <a class="card" href="prebooking.html">
+        <img src="register.jpg" alt="Pre-Booking" />
+        <h3>Pre-Booking</h3>
+      </a>
+      <a class="card" href="previous.html">
+        <img src="previous.jpg" alt="Previous Videos" />
+        <h3>Previous Videos</h3>
+      </a>
+      <a class="card" href="schedule.html">
+        <img src="shedule1.jpeg" alt="Schedules" />
+        <h3>Schedules</h3>
+      </a>
+      <a class="card" href="cars.html">
+        <img src="cars.jpg" alt="Cars" />
+        <h3>Cars</h3>
+      </a>
+    </div>
+  </div>
+
+  <!-- Background Audio -->
+  <iframe src="musicplayer.html" style="display:none;" id="musicFrame"></iframe>
+  <!-- Music Control Button -->
+
+
+  <script>
+    const music = document.getElementById('backgroundMusic');
+    const btn = document.getElementById('musicControlBtn');
+
+    // On page load: try to play if user had it playing before
+    window.addEventListener('load', () => {
+      if (localStorage.getItem('musicPlaying') === 'true') {
+        music.play().then(() => {
+          btn.textContent = 'Pause Music';
+        }).catch(() => {
+          // Autoplay might be blocked, show play button
+          btn.textContent = 'Play Music';
+        });
+      }
+    });
+
+    btn.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+        btn.textContent = 'Pause Music';
+        localStorage.setItem('musicPlaying', 'true');
+      } else {
+        music.pause();
+        btn.textContent = 'Play Music';
+        localStorage.setItem('musicPlaying', 'false');
+      }
+    });
+  </script>
+
+</body>
+</html>

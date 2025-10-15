@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pre-Booking | SpeedKart</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px 20px;
+      z-index: 10;
+    }
+    .navbar a {
+      text-decoration: none;
+      background: #fff;
+      color: #000;
+      padding: 10px 15px;
+      margin-left: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    .navbar a:hover {
+      background: #e0e0e0;
+    }
+
+    /* Hero / Image Background */
+    .hero {
+      position: relative;
+      height: 60vh;
+      width: 100%;
+      background-image: url("schedule.jpg"); /* replace with your image */
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+    #welcomeHeading {
+      font-size: 3rem;
+      margin: 0;
+      opacity: 0;
+      animation: fadeInDown 1.5s forwards;
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Content Section */
+    .content {
+      background: #111;
+      padding: 40px 20px;
+    }
+    .about {
+      max-width: 800px;
+      margin: 0 auto 30px auto;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      color: #ddd;
+      text-align: center;
+    }
+
+    .booking-form {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #222;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .booking-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #fff;
+    }
+    .booking-form input, .booking-form select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 4px;
+    }
+    .booking-form button {
+      background: #ff6600;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .booking-form button:hover {
+      background: #e65c00;
+    }
+
+    .success-message {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #00ff88;
+      display: none;
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 20px;
+      color: #fff;
+    }
+    .back-link a {
+      color: #ff6600;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<iframe src="musicplayer.html" style="display:none;" id="musicFrame"></iframe>
+  <div class="navbar">
+    <a href="cart.html">Home</a>
+    <a href="prebooking.html">Pre-Booking</a>
+    <a href="previous.html">Previous Videos</a>
+    <a href="schedule.html">Schedules</a>
+    <a href="cars.html">Cars</a>
+  </div>
+
+  <!-- Hero Section with Image -->
+  <div class="hero">
+    <div class="overlay">
+      <h1 id="welcomeHeading">Welcome to Your Pre-Booking</h1>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="about">
+      <p>Welcome to SpeedKart! Reserve your ride now. Fill in your details below to select your car, its model, and choose an available date & time. See you on the track!</p>
+    </div>
+
+    <div class="booking-form">
+      <form id="bookingForm">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name" required>
+
+        <label for="car">Car</label>
+        <select id="car" name="car" required>
+          <option value="">Select Car</option>
+          <option value="Speedster">Speedster</option>
+          <option value="RoadRunner">RoadRunner</option>
+          <option value="Thunderbolt">Thunderbolt</option>
+        </select>
+
+        <label for="model">Model</label>
+        <input type="text" id="model" name="model" placeholder="Car Model (if any)" required>
+
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="time">Time</label>
+        <input type="time" id="time" name="time" required>
+
+        <button type="submit">Book Now</button>
+      </form>
+
+      <div class="success-message" id="successMessage">
+        ✅ Booking completed successfully! We’ll see you on the track. 🏎️
+      </div>
+    </div>
+
+    <div class="back-link">
+      <a href="cart.html">← Back to Home</a>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('bookingForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      successMessage.style.display = 'block';
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
+

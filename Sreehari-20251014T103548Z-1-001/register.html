@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pre-Booking | SpeedKart</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    .hero {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+    }
+    .hero video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: -1;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+    #welcomeHeading {
+      font-size: 3.5rem;
+      margin: 0;
+      opacity: 0;
+      animation: fadeInDown 1.5s forwards;
+    }
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .content {
+      background: #222;
+      padding: 40px 20px;
+    }
+    .about {
+      max-width: 800px;
+      margin: 0 auto 30px auto;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      color: #ddd;
+    }
+    .booking-form {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #333;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    .booking-form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    .booking-form input, .booking-form select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 20px;
+      border: none;
+      border-radius: 4px;
+    }
+    .booking-form input[type="date"],
+    .booking-form input[type="time"] {
+      /* you can style date/time fields differently if needed */
+    }
+    .booking-form button {
+      background: #ff6600;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .booking-form button:hover {
+      background: #e65c00;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <video autoplay muted loop playsinline poster="poster.jpg">
+      <source src="car.mp4" type="video/mp4">
+      <!-- fallback video if needed -->
+      Your browser does not support the video tag.
+    </video>
+    <div class="overlay">
+      <h1 id="welcomeHeading">Welcome to Pre-Booking</h1>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="about">
+      <p>At SpeedKart, we bring you cutting-edge racing experiences. Fill in the form below to reserve your slot, tell us your name, select your car model, and choose a date & time that suits you. Let’s get racing!</p>
+    </div>
+
+    <div class="booking-form">
+      <form action="#" method="post">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+        <label for="car">Car</label>
+        <select id="car" name="car" required>
+          <option value="">Select Car</option>
+          <option value="Car A">Car A</option>
+          <option value="Car B">Car B</option>
+          <option value="Car C">Car C</option>
+        </select>
+
+        <label for="model">Model</label>
+        <input type="text" id="model" name="model" placeholder="Car Model" required>
+
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="time">Time</label>
+        <input type="time" id="time" name="time" required>
+
+        <button type="submit">Book Now</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
