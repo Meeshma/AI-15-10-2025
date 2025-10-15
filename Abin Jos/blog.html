@@ -1,0 +1,151 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>University Website Design - Easy Tutorials</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <section class="sub-header">
+      <nav>
+        <a href="index.html"><img src="images/logo.png" /></a>
+        <div class="nav-links" id="navLinks">
+          <i class="fa fa-close" onclick="hideMenu()"></i>
+          <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="course.html">COURSE</a></li>
+            <li><a href="blog.html">BLOG</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+          </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+      </nav>
+      <h1>Our Certificate & Online Programs For 2021</h1>
+    </section>
+
+    <section class="blog-content">
+      <div class="row">
+        <div class="blog-left">
+          <img src="images/certificate.jpg" />
+          <h2>Our Certificate & Online Programs For 2025</h2>
+
+          <p>
+            The future of education is here. Explore our dynamic selection of
+            2025 Certificate and Online Programs, built to equip you with the
+            in-demand skills needed to thrive in today's rapidly evolving global
+            marketplace.
+          </p>
+          <br />
+          <p>
+            What sets our online programs apart is the commitment to quality
+            instruction. Every course is taught by **leading experts in their
+            fields, bringing years of professional experience and cutting-edge
+            research directly to your screen. Our curriculum is structured into
+            accessible modules, blending video lectures, interactive quizzes,
+            and collaborative projects. This approach ensures a deep
+            understanding of complex topics, whether you're studying Data
+            Science, Business Analytics, or Machine Learning.
+          </p>
+          <br />
+          <p>
+            Our programs are designed with a heavy emphasis on **practical
+            application** and real-world projects. We work closely with industry
+            partners to ensure our curriculum stays current, giving you the
+            skills most sought after by employers. Whether your goal is to
+            advance your current career or pivot to a new, high-demand field,
+            our certificates provide the necessary foundation for professional
+            success and long-term growth.
+          </p>
+          <br />
+          <p>
+            We firmly believe that quality education should be a catalyst for
+            change. By joining our community, you gain more than just a
+            certificate; you gain a lifelong network and the confidence to
+            pursue ambitious goals. **Transform your potential into a reality**
+            with one of our specialized online programs.
+          </p>
+
+          <div class="comment-box">
+            <h3>Leave a comment</h3>
+            <form class="comment-form">
+              <input type="text" placeholder="Enter Name" />
+              <input type="email" placeholder="Enter email" />
+              <textarea rows="5" placeholder="Your Comment"></textarea>
+              <button type="submit" class="hero-btn red-btn">
+                POST COMMENT
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="blog-right">
+          <h3>Post Categories</h3>
+          <div>
+            <span>Business Analytics</span>
+            <span>21</span>
+          </div>
+          <div>
+            <span>Data Science</span>
+            <span>28</span>
+          </div>
+          <div>
+            <span>Machine Learning</span>
+            <span>15</span>
+          </div>
+          <div>
+            <span>Computer Science</span>
+            <span>34</span>
+          </div>
+          <div>
+            <span>AutoCAD</span>
+            <span>42</span>
+          </div>
+          <div>
+            <span>Journalism</span>
+            <span>22</span>
+          </div>
+          <div>
+            <span>Commerce</span>
+            <span>13</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer">
+      <h4>About Us</h4>
+      <p>
+        We are dedicated to providing accessible, world-class education and
+        resources. Our goal is to empower students globally, fostering
+        innovation and creating leaders for the future.
+      </p>
+      <div class="icons">
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-linkedin"></i>
+      </div>
+      <p>made with <i class="fa fa-heart-o"></i> by Easy Tutorials</p>
+    </section>
+
+    <script>
+      var navLinks = document.getElementById("navLinks");
+
+      function showMenu() {
+        navLinks.style.right = "0";
+      }
+
+      function hideMenu() {
+        navLinks.style.right = "-200px";
+      }
+    </script>
+  </body>
+</html>

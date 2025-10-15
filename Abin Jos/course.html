@@ -1,0 +1,137 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Global University - Courses</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,600,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <section class="sub-header">
+      <nav>
+        <a href="index.html"><img src="images/logo.png" /></a>
+        <div class="nav-links" id="navLinks">
+          <i class="fa fa-close" onclick="hideMenu()"></i>
+          <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="course.html">COURSE</a></li>
+            <li><a href="blog.html">BLOG</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+          </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+      </nav>
+      <h1>Our Courses</h1>
+    </section>
+
+    <!---------- course ----------->
+
+    <section class="course">
+      <h1>Courses We Offer</h1>
+      <p>
+        We provide diverse programs designed to build knowledge, skills, and
+        career opportunities.
+      </p>
+      <div class="row">
+        <div class="course-col">
+          <h3>Undergraduate Programs</h3>
+          <p>
+            Gain a strong academic foundation with practical training,
+            internships, and opportunities for research that prepare you for
+            future careers or higher studies.
+          </p>
+        </div>
+        <div class="course-col">
+          <h3>Postgraduate Programs</h3>
+          <p>
+            Specialize in your chosen discipline with advanced research,
+            innovation, and professional guidance, designed to help you become a
+            leader in your field.
+          </p>
+        </div>
+        <div class="course-col">
+          <h3>Professional Certifications</h3>
+          <p>
+            Short, focused programs that enhance your professional profile by
+            providing industry-relevant skills to help you stay competitive in
+            today’s job market.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!---------- Facilities ---------->
+
+    <section class="facility">
+      <h1>Our Facilities</h1>
+      <p>
+        Our modern facilities help students learn, explore, and grow in the best
+        environment possible.
+      </p>
+      <div class="row">
+        <div class="facility-col">
+          <img src="images/library.png" />
+          <h3>World-Class Library</h3>
+          <p>
+            A vast collection of books, journals, e-resources, and study spaces
+            to support learning and research.
+          </p>
+        </div>
+        <div class="facility-col">
+          <img src="images/basketball.png" />
+          <h3>Sports Complex</h3>
+          <p>
+            Indoor and outdoor sports facilities designed to promote health,
+            fitness, and teamwork among students.
+          </p>
+        </div>
+        <div class="facility-col">
+          <img src="images/cafeteria.png" />
+          <h3>Cafeteria</h3>
+          <p>
+            Healthy and delicious meals are served daily, offering a wide range
+            of options to suit every taste.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-------- footer ---------->
+
+    <section class="footer">
+      <h4>About Us</h4>
+      <p>
+        Global University is committed to excellence in education, research, and
+        student success. Our programs prepare graduates to thrive in their
+        careers and make meaningful contributions to society.
+      </p>
+      <div class="icons">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-instagram"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+      </div>
+      <p>Made with <i class="fa fa-heart-o"></i> by Global University</p>
+    </section>
+
+    <!----JavaScript for toggle menu---->
+    <script>
+      var navLinks = document.getElementById("navLinks");
+
+      function showMenu() {
+        navLinks.style.right = "0";
+      }
+
+      function hideMenu() {
+        navLinks.style.right = "-200px";
+      }
+    </script>
+  </body>
+</html>
