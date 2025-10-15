@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The PlayStation Café - Games</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <style>
+    /* Games Page */
+    .page-header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      color: #00d1ff;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+    }
+
+    .page-content {
+      padding: 2rem 1rem 5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      justify-items: center;
+    }
+
+    .game-card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(8px);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+      transition: transform 0.3s, background 0.3s;
+      width: 100%;
+      max-width: 300px;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .game-card:hover {
+      transform: translateY(-5px);
+      background: rgba(0,209,255,0.05);
+    }
+
+    .game-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .game-card h3 {
+      color: #00d1ff;
+      margin: 15px 15px 5px;
+    }
+
+    .game-card p {
+      color: #fff;
+      margin: 0 15px 15px;
+      font-size: 1em;
+      line-height: 1.4;
+    }
+
+    @media screen and (max-width: 500px) {
+      .page-header h1 {
+        font-size: 2rem;
+      }
+
+      .game-card img {
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">THE PLAYSTATION</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="games.html" class="active">Games</a></li>
+      <li><a href="booking.html">Booking</a></li>
+      <li><a href="membership.html">Membership</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <h1>Available Games</h1>
+  </section>
+
+  <!-- Games Cards -->
+  <section class="page-content">
+    <div class="game-card">
+      <img src="assets/images/fifa24.jpg" alt="FIFA 24">
+      <h3>FIFA 24</h3>
+      <p>Compete with friends and score your best goals!</p>
+    </div>
+    <div class="game-card">
+      <img src="assets/images/cod.jpg" alt="Call of Duty">
+      <h3>Call of Duty</h3>
+      <p>Experience intense missions and multiplayer battles.</p>
+    </div>
+    <div class="game-card">
+      <img src="assets/images/gta5.jpg" alt="GTA V">
+      <h3>GTA V</h3>
+      <p>Explore the open world of Los Santos.</p>
+    </div>
+     </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 The PlayStation Café. All rights reserved.</p>
+  </footer>
+</body>
+</html>

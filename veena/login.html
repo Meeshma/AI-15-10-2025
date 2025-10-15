@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | The PlayStation Café</title>
+  <style>
+    /* ---------- RESET ---------- */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+    body {
+      height: 100vh;
+      background: radial-gradient(circle at top, #0a0a1a, #000);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* ---------- CONTAINER ---------- */
+    .container {
+      width: 380px;
+      height: 460px;
+      background: rgba(15, 15, 35, 0.9);
+      border: 2px solid #0ff;
+      border-radius: 20px;
+      box-shadow: 0 0 25px #0ff;
+      perspective: 1000px;
+      transition: 0.8s ease-in-out;
+      position: relative;
+    }
+
+    .flip {
+      transform: rotateY(180deg);
+    }
+
+    /* ---------- CARD ---------- */
+    .card {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      backface-visibility: hidden;
+      transition: 0.8s;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .card h2 {
+      text-align: center;
+      color: #0ff;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+
+    label {
+      color: #eee;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    input {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid #0ff;
+      border-radius: 8px;
+      color: #0ff;
+      padding: 10px;
+      margin-bottom: 18px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      box-shadow: 0 0 10px #0ff;
+    }
+
+    button {
+      background: #0ff;
+      color: #000;
+      font-weight: 600;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #00ffffa1;
+      box-shadow: 0 0 15px #0ff;
+    }
+
+    .toggle {
+      color: #0ff;
+      text-align: center;
+      cursor: pointer;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .back {
+      transform: rotateY(180deg);
+    }
+
+    .msg {
+      color: #ff8080;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="cardContainer">
+    <!-- LOGIN CARD -->
+    <div class="card front">
+      <h2>Login</h2>
+      <label for="loginName">Name</label>
+      <input type="text" id="loginName" placeholder="Enter your name" required>
+
+      <label for="loginPass">Password</label>
+      <input type="password" id="loginPass" placeholder="Enter your password" required>
+
+      <button onclick="loginUser()">Login</button>
+
+      <p class="toggle" onclick="flipCard()">New here? Register</p>
+      <p class="msg" id="loginMsg"></p>
+    </div>
+
+    <!-- REGISTER CARD -->
+    <div class="card back">
+      <h2>Register</h2>
+      <label for="regName">Name</label>
+      <input type="text" id="regName" placeholder="Enter your name" required>
+
+      <label for="regEmail">Email</label>
+      <input type="email" id="regEmail" placeholder="Enter your email" required>
+
+      <label for="regPass">Password</label>
+      <input type="password" id="regPass" placeholder="Enter your password" required>
+
+      <button onclick="registerUser()">Register</button>
+
+      <p class="toggle" onclick="flipCard()">Already have an account? Login</p>
+      <p class="msg" id="regMsg"></p>
+    </div>
+  </div>
+
+  <script>
+    const container = document.getElementById("cardContainer");
+
+    // Flip between Login and Register
+    function flipCard() {
+      container.classList.toggle("flip");
+    }
+
+    // Register User (save in localStorage)
+    function registerUser() {
+      const name = document.getElementById("regName").value.trim();
+      const email = document.getElementById("regEmail").value.trim();
+      const pass = document.getElementById("regPass").value.trim();
+      const msg = document.getElementById("regMsg");
+
+      if (!name || !email || !pass) {
+        msg.textContent = "All fields are required!";
+        return;
+      }
+
+      localStorage.setItem("userName", name);
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("userPass", pass);
+      msg.style.color = "#0f0";
+      msg.textContent = "Registered successfully! Please login.";
+      setTimeout(() => flipCard(), 1000);
+    }
+
+    // Login User
+    function loginUser() {
+      const name = document.getElementById("loginName").value.trim();
+      const pass = document.getElementById("loginPass").value.trim();
+      const msg = document.getElementById("loginMsg");
+
+      const storedName = localStorage.getItem("userName");
+      const storedPass = localStorage.getItem("userPass");
+
+      if (name === storedName && pass === storedPass) {
+        localStorage.setItem("isLoggedIn", "true");
+        msg.style.color = "#0f0";
+        msg.textContent = "Login successful!";
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 800);
+      } else {
+        msg.textContent = "Invalid name or password!";
+      }
+    }
+
+    // Redirect if already logged in
+    window.onload = () => {
+      if (localStorage.getItem("isLoggedIn") === "true") {
+        window.location.href = "index.html";
+      }
+    };
+  </script>
+</body>
+</html>

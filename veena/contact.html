@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The PlayStation Café - Contact</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <style>
+    /* Contact Info Page Styles */
+    .page-header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      color: #00d1ff;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+    }
+
+    .page-content {
+      display: flex;
+      justify-content: center;
+      padding: 2rem 1rem 5rem;
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      padding: 2.5rem 2rem;
+      border-radius: 15px;
+      width: 100%;
+      max-width: 450px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+      background: rgba(0, 209, 255, 0.05);
+    }
+
+    .contact-card h2 {
+      color: #00d1ff;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .contact-card p {
+      color: #fff;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .contact-card a {
+      color: #00d1ff;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .contact-card a:hover {
+      text-decoration: underline;
+    }
+
+    @media screen and (max-width: 500px) {
+      .page-header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">THE PLAYSTATION</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="games.html">Games</a></li>
+      <li><a href="booking.html">Booking</a></li>
+      <li><a href="membership.html">Membership</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <h1>Contact Us</h1>
+  </section>
+
+  <!-- Contact Information -->
+  <section class="page-content">
+    <div class="contact-card">
+      <h2>The PlayStation Café</h2>
+      <p><strong>Owner:</strong>VEENA SABU</p>
+      <p><strong>Phone:</strong> <a href="tel:+911234567890">+91 12345 67890</a></p>
+      <p><strong>Email:</strong> <a href="mailto:info@playstationcafe.com">info@playstationcafe.com</a></p>
+      <p><strong>Address:</strong> 123 Gaming Street, Vaduthala, Kochi, India</p>
+      <p><strong>Opening Hours:</strong> Mon–Sun: 10:00 AM – 11:00 PM</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 The PlayStation Café. All rights reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The PlayStation Café - Booking</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <style>
+    /* Booking Page Styles */
+    .page-header {
+      text-align: center;
+      padding: 3rem 1rem 2rem;
+      color: #00d1ff;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+    }
+
+    .page-content {
+      display: flex;
+      justify-content: center;
+      padding: 2rem 1rem 5rem;
+    }
+
+    .booking-form {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      padding: 2.5rem 2rem;
+      border-radius: 15px;
+      width: 100%;
+      max-width: 450px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .booking-form:hover {
+      transform: translateY(-5px);
+      background: rgba(0, 209, 255, 0.05);
+    }
+
+    .booking-form label {
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .booking-form input,
+    .booking-form select {
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 1em;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      transition: 0.3s;
+    }
+
+    .booking-form input::placeholder {
+      color: #ccc;
+    }
+
+    .booking-form input:focus,
+    .booking-form select:focus {
+      box-shadow: 0 0 8px #00d1ff;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .btn-primary {
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #00d1ff, #008ec7);
+      color: #0f1724;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #00d1ff;
+    }
+
+    @media screen and (max-width: 500px) {
+      .booking-form {
+        padding: 2rem 1.5rem;
+      }
+      
+      .page-header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">THE PLAYSTATION</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="games.html">Games</a></li>
+      <li><a href="booking.html" class="active">Booking</a></li>
+      <li><a href="membership.html">Membership</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <h1>Book Your Game Slot</h1>
+  </section>
+
+  <!-- Booking Form -->
+  <section class="page-content">
+    <form class="booking-form" id="bookingForm">
+      <label>Name:</label>
+      <input type="text" placeholder="Enter your name" required>
+      <label>Email:</label>
+      <input type="email" placeholder="Enter your email" required>
+      <label>Select Game:</label>
+      <select required>
+        <option value="">--Select Game--</option>
+        <option>FIFA 24</option>
+        <option>Call of Duty</option>
+        <option>GTA V</option>
+        <option>Spider-Man 2</option>
+      </select>
+      <label>Date & Time:</label>
+      <input type="datetime-local" required>
+      <button class="btn-primary" type="submit">Book Now</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 The PlayStation Café. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript for popup -->
+  <script>
+    const form = document.getElementById('bookingForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent form from submitting/reloading
+      alert('✅ Booking Successful!'); // Popup message
+      form.reset(); // Optional: clear the form fields
+    });
+  </script>
+</body>
+</html>
