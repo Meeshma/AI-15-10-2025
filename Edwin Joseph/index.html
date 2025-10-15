@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gym Fitness Management</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <nav>
+      <div class="logo">🏋️ FitLife Gym</div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#classes">Classes</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact" class="cta">Join Now</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Transform Your Body, Transform Your Life</h1>
+      <p>Join FitLife Gym and unlock your true potential.</p>
+      <a href="#pricing" class="btn">Get Started</a>
+    </div>
+  </section>
+
+  <!-- About -->
+ <section id="about" class="about section">
+  <!-- Background Video -->
+  <video class="about-video" autoplay muted loop playsinline>
+    <source src="about.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="about-overlay">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>
+        At Fitlife Gym, we believe fitness is not just about working out — it’s a lifestyle.
+        Our mission is to create a welcoming and motivating environment where everyone, from
+        beginners to athletes, can achieve their health and fitness goals.
+        <br><br>
+        With state-of-the-art equipment, certified trainers, and a wide variety of classes,
+        we provide everything you need to stay strong, healthy, and confident. Whether you’re
+        looking to build strength, improve endurance, or simply stay active, we’re here to guide
+        you every step of the way.
+        <br><br>
+        Join us today and be a part of a fitness community that inspires growth, discipline,
+        and lasting results.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- Classes -->
+  <section id="classes" class="classes section">
+    <div class="container">
+      <h2>Our Classes</h2>
+      <div class="class-list">
+        <div class="class-card">
+          <h3>Yoga</h3>
+           <img src="images/yoga.jpg" alt="Yoga"/>
+          <p>Find your balance and inner peace with our guided yoga sessions.</p>
+        </div>
+        <div class="class-card">
+          <h3>HIIT</h3>
+ <img src="images/hiit.jpg" alt="HIIT"/>
+          <p>Burn fat fast and build endurance with High-Intensity Interval Training.</p>
+        </div>
+        <div class="class-card">
+          <h3>Zumba</h3>
+ <img src="images/zumba.jpg" alt="Zumba"/>
+          <p>Dance your way to fitness and have fun while burning calories!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="pricing section">
+    <div class="container">
+      <h2>Membership Plans</h2>
+      <div class="pricing-cards">
+
+        <!-- Basic -->
+        <div class="price-card">
+          <h3>Basic</h3>
+          <p>1000 rs / month</p>
+          <button class="btn toggle-details">View Details</button>
+          <div class="details">
+            <ul>
+              <li>Access to gym floor</li>
+              <li>1 free personal training session</li>
+              <li>Locker access</li>
+              
+            </ul>
+            <a href="#contact" class="btn">Join with Basic</a>
+          </div>
+        </div>
+
+        <!-- Standard -->
+        <div class="price-card">
+          <h3>Standard</h3>
+          <p>1500 rs / month</p>
+          <button class="btn toggle-details">View Details</button>
+          <div class="details">
+            <ul>
+              <li>Everything in Basic</li>
+              <li>Unlimited group classes (yoga,zumba.HIIT etc..)</li>
+              <li>Access to cardio zone</li>
+              <li>2 personal training sessions per month</li>
+            </ul>
+            <a href="#contact" class="btn">Join with Standard</a>
+          </div>
+        </div>
+
+        <!-- Premium -->
+        <div class="price-card">
+          <h3>Premium</h3>
+          <p>2500 rs / month</p>
+          <button class="btn toggle-details">View Details</button>
+          <div class="details">
+            <ul>
+             <li>Everything in standard</li>
+       <li>Dedicated personal trainer</li>
+<li>Customised nutritional guidance</li>  
+   <li>24/7 Gym access </li>
+<li>Exclusive steam bath and spa facilities </li>       
+</ul>
+            <a href="#contact" class="btn">Join with Premium</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact section">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Email Address" required>
+        <textarea id="message" placeholder="Your Message" rows="4" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2025 FitLife Gym | All Rights Reserved</p>
+      <div class="socials">
+        <a href="#">Facebook</a> | 
+        <a href="#">Instagram</a> | 
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS file -->
+  <script src="script.js"></script>
+</body>
+</html>
