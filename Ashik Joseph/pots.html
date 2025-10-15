@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Levo Plant Farm - Pots</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f4f9f4; margin:0; padding:0; }
+    header { background:#2e7d32; color:white; padding:20px; text-align:center; }
+    header h1 { margin:0; font-family: 'Brush Script MT', cursive; }
+    nav a { color:white; margin:0 10px; text-decoration:none; font-weight:bold; }
+    .pots { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:20px; padding:20px; }
+    .pot-card { background:white; padding:10px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.2); text-align:center; }
+    .pot-card img { width:100%; height:150px; object-fit:cover; border-radius:10px; }
+    .add-to-cart { margin-top:10px; padding:8px 10px; background:#81c784; color:white; border:none; border-radius:5px; cursor:pointer; }
+    .add-to-cart:hover { background:#4caf50; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Levo Plant Farm</h1>
+  <nav>
+      <a href="index14.html">Home</a>
+      <a href="index14.html#shop">Shop</a>
+      <a href="pots.html">Pots</a>
+      <a href="accessories.html">Accessories & Care</a>
+      <a href="cart.html" class="cart-icon">Cart <span class="cart-badge" id="cartBadge">0</span></a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<div class="pots">
+  <!-- 20 Pots Cards -->
+  <div class="pot-card" data-name="Clay Pot" data-price="150">
+    <img src="images/21.jpg" alt="Clay Pot">
+    <h3>Clay Pot</h3>
+    <p>₹150</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <div class="pot-card" data-name="Terracotta Pot" data-price="180">
+    <img src="images/22.jpg" alt="Terracotta Pot">
+    <h3>Terracotta Pot</h3>
+    <p>₹180</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <div class="pot-card" data-name="Ceramic Pot" data-price="200">
+    <img src="images/23.jpg" alt="Ceramic Pot">
+    <h3>Ceramic Pot</h3>
+    <p>₹200</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <div class="pot-card" data-name="Plastic Pot" data-price="100">
+    <img src="images/24.jpg" alt="Plastic Pot">
+    <h3>Plastic Pot</h3>
+    <p>₹100</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <div class="pot-card" data-name="Hanging Pot" data-price="250">
+    <img src="images/25.jpg" alt="Hanging Pot">
+    <h3>Hanging Pot</h3>
+    <p>₹250</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <div class="pot-card" data-name="Square Pot" data-price="180">
+    <img src="images/26.jpg" alt="Square Pot">
+    <h3>Square Pot</h3>
+    <p>₹180</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <div class="pot-card" data-name="Round Pot" data-price="200">
+    <img src="images/27.jpg" alt="Round Pot">
+    <h3>Round Pot</h3>
+    <p>₹200</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <div class="pot-card" data-name="Self-Watering Pot" data-price="300">
+    <img src="images/28.jpg" alt="Self-Watering Pot">
+    <h3>Self-Watering Pot</h3>
+    <p>₹300</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <div class="pot-card" data-name="Decorative Pot" data-price="220">
+    <img src="images/29.jpg" alt="Decorative Pot">
+    <h3>Decorative Pot</h3>
+    <p>₹220</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <div class="pot-card" data-name="Mini Pot" data-price="120">
+    <img src="images/30.jpg" alt="Mini Pot">
+    <h3>Mini Pot</h3>
+    <p>₹120</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <!-- Add 10 more pots similarly -->
+  <div class="pot-card" data-name="Oval Pot" data-price="200">
+    <img src="images/31.jpg" alt="Oval Pot">
+    <h3>Oval Pot</h3>
+    <p>₹200</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <div class="pot-card" data-name="Square Terracotta" data-price="250">
+    <img src="images/32.jpg" alt="Square Terracotta">
+    <h3>Square Terracotta</h3>
+    <p>₹250</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <div class="pot-card" data-name="Round Ceramic" data-price="230">
+    <img src="images/33.jpg" alt="Round Ceramic">
+    <h3>Round Ceramic</h3>
+    <p>₹230</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <div class="pot-card" data-name="Hanging Ceramic" data-price="280">
+    <img src="images/34.jpg" alt="Hanging Ceramic">
+    <h3>Hanging Ceramic</h3>
+    <p>₹280</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <div class="pot-card" data-name="Plastic Square" data-price="150">
+    <img src="images/35.jpg" alt="Plastic Square">
+    <h3>Plastic Square</h3>
+    <p>₹150</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <div class="pot-card" data-name="Decor Pot Mini" data-price="180">
+    <img src="images/36.jpg" alt="Decor Pot Mini">
+    <h3>Decor Pot Mini</h3>
+    <p>₹180</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <div class="pot-card" data-name="Hanging Mini Pot" data-price="200">
+    <img src="images/37.jpg" alt="Hanging Mini Pot">
+    <h3>Hanging Mini Pot</h3>
+    <p>₹200</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <div class="pot-card" data-name="Square Mini Pot" data-price="150">
+    <img src="images/38.jpg" alt="Square Mini Pot">
+    <h3>Square Mini Pot</h3>
+    <p>₹150</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <div class="pot-card" data-name="Oval Mini Pot" data-price="170">
+    <img src="images/39.jpg" alt="Oval Mini Pot">
+    <h3>Oval Mini Pot</h3>
+    <p>₹170</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+  <div class="pot-card" data-name="Decorative Oval Pot" data-price="220">
+    <img src="images/40.jpg" alt="Decorative Oval Pot">
+    <h3>Decorative Oval Pot</h3>
+    <p>₹220</p>
+    <button class="add-to-cart">Add to Cart</button>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".add-to-cart");
+  const cartBadge = document.getElementById("cartBadge");
+
+  // Function to update cart badge count
+  function updateCartBadge() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cartBadge.innerText = cart.length;
+  }
+
+  // Initial update when the page loads
+  updateCartBadge();
+
+  // Add to cart event
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      const productCard = button.closest("[data-name]");
+      const name = productCard.getAttribute("data-name");
+      const price = parseInt(productCard.getAttribute("data-price"));
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push({ name, price });
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      alert(`${name} added to cart!`);
+      updateCartBadge(); // Update badge after adding
+    });
+  });
+
+  // Remove item function (if used elsewhere)
+  window.removeItem = function(index) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartBadge();
+    location.reload();
+  };
+});
+</script>
+
+
+</body>
+</html>

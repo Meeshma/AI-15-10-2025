@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment - Levo Plant Farm</title>
+<style>
+body { font-family: Arial, sans-serif; background:#f4f9f4; padding:20px; }
+form { background:white; padding:20px; border-radius:10px; max-width:400px; margin:auto; box-shadow:0 2px 8px rgba(0,0,0,0.2); }
+input { width:100%; padding:10px; margin:10px 0; }
+button { padding:10px 20px; background:#81c784; color:white; border:none; cursor:pointer; border-radius:5px; }
+button:hover { background:#4caf50; }
+</style>
+</head>
+<body>
+<h2 style="text-align:center;">Payment</h2>
+<p style="text-align:center;">Amount to Pay: ₹<span id="pay-amount">0</span></p>
+
+<form id="payment-form">
+  <input type="text" placeholder="Card Number" required>
+  <input type="text" placeholder="Expiry MM/YY" required>
+  <input type="text" placeholder="CVV" required>
+  <button type="submit">Pay Now</button>
+</form>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let total = cart.reduce((sum, item) => sum + item.price, 0);
+  document.getElementById("pay-amount").innerText = total;
+
+  document.getElementById("payment-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    alert("Payment Successful! Thank you for shopping.");
+    localStorage.removeItem("cart"); // Clear cart
+    window.location.href = "index.html";
+  });
+});
+</script>
+</body>
+</html>

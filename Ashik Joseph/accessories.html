@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Accessories & Care - Levo Plant Farm</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background:#f4f9f4; color:#333; scroll-behavior:smooth; }
+
+    header { background:#2e7d32; color:white; padding:20px 40px; text-align:center; }
+    header h1 { font-size:2.5em; font-family:'Brush Script MT', cursive; }
+    nav { margin-top:10px; }
+    nav a { color:white; text-decoration:none; margin:0 12px; font-weight:bold; }
+    nav a:hover { text-decoration:underline; }
+
+    .cart-icon { position:relative; }
+    .cart-badge { position:absolute; top:-8px; right:-12px; background:red; color:white; font-size:12px; font-weight:bold; padding:2px 6px; border-radius:50%; display:none; }
+
+    section { padding:40px 20px; }
+    h2 { text-align:center; margin-bottom:30px; }
+
+    .accessories { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:20px; }
+    .accessory-card { background:white; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.1); overflow:hidden; transition: transform 0.3s ease; }
+    .accessory-card:hover { transform: translateY(-5px); }
+    .accessory-card img { width:100%; height:200px; object-fit:cover; }
+    .accessory-card .info { padding:15px; }
+    .accessory-card h3 { margin-bottom:10px; }
+    .accessory-card p { font-size:0.9em; color:#666; }
+    .accessory-card .add-to-cart { display:block; width:100%; padding:10px; margin-top:10px; background-color:#81c784; color:white; border:none; border-radius:5px; cursor:pointer; transition: background 0.3s ease; }
+    .accessory-card .add-to-cart:hover { background-color:#4caf50; }
+
+    .footer { background:#2e7d32; color:white; padding:20px; text-align:center; margin-top:40px; line-height:1.6; }
+    .footer a { color:#c8e6c9; text-decoration:none; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Levo Plant Farm</h1>
+  <nav>
+      <a href="index14.html">Home</a>
+      <a href="index14.html#shop">Shop</a>
+      <a href="pots.html">Pots</a>
+      <a href="#care">Accessories & Care</a>
+      <a href="cart.html" class="cart-icon">Cart <span class="cart-badge" id="cartBadge">0</span></a>
+ <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Accessories Section -->
+  <section>
+    <h2>Accessories & Care Items</h2>
+    <div class="accessories">
+      <div class="accessory-card"><img src="images/41.jpg"><div class="info"><h3>Watering Can</h3><p>₹350</p><button class="add-to-cart" onclick="addToCart('Watering Can',350,'image/41.jpg')">Add to Cart</button></div></div>
+      <div class="accessory-card"><img src="images/42.jpg"><div class="info"><h3>Plant Fertilizer</h3><p>₹200</p><button class="add-to-cart" onclick="addToCart('Plant Fertilizer',200,'image/42.jpg')">Add to Cart</button></div></div>
+      <div class="accessory-card"><img src="images/43.jpg"><div class="info"><h3>Plant Soil Mix</h3><p>₹150</p><button class="add-to-cart" onclick="addToCart('Plant Soil Mix',150,'image/43.jpg')">Add to Cart</button></div></div>
+      <div class="accessory-card"><img src="images/44.jpg"><div class="info"><h3>Pruning Shears</h3><p>₹500</p><button class="add-to-cart" onclick="addToCart('Pruning Shears',500,'image/44.jpg')">Add to Cart</button></div></div>
+      <div class="accessory-card"><img src="images/45.jpg"><div class="info"><h3>Plant Tray</h3><p>₹120</p><button class="add-to-cart" onclick="addToCart('Plant Tray',120,'image/45.jpg')">Add to Cart</button></div></div>
+      <div class="accessory-card"><img src="images/46.jpg"><div class="info"><h3>Gardening Gloves</h3><p>₹180</p><button class="add-to-cart" onclick="addToCart('Gardening Gloves',180,'image/46.jpg')">Add to Cart</button></div></div>
+      <div class="accessory-card"><img src="images/47.jpg"><div class="info"><h3>Plant Labels</h3><p>₹80</p><button class="add-to-cart" onclick="addToCart('Plant Labels',80,'image/47.jpg')">Add to Cart</button></div></div>
+      <div class="accessory-card"><img src="images/48.jpg"><div class="info"><h3>Misting Spray</h3><p>₹250</p><button class="add-to-cart" onclick="addToCart('Misting Spray',250,'image/48.jpg')">Add to Cart</button></div></div>
+      <div class="accessory-card"><img src="images/49.jpg"><div class="info"><h3>Plant Support Stick</h3><p>₹100</p><button class="add-to-cart" onclick="addToCart('Plant Support Stick',100,'image/49.jpg')">Add to Cart</button></div></div>
+      <div class="accessory-card"><img src="images/50.jpg"><div class="info"><h3>Decorative Pebbles</h3><p>₹150</p><button class="add-to-cart" onclick="addToCart('Decorative Pebbles',150,'image/50.jpg')">Add to Cart</button></div></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2025 Levo Plant Farm. All rights reserved.</p>
+    <p>Owner: Ashik Joseph</p>
+    <p>📞 Phone/WhatsApp: <a href="tel:+916235900907">6235900907</a></p>
+    <p>📧 Email: <a href="mailto:ashikjoseph607@gmail.com">ashikjoseph607@gmail.com</a></p>
+  </div>
+
+<script>
+  // Load existing cart count from localStorage
+  let cartCount = localStorage.getItem('cartCount') ? parseInt(localStorage.getItem('cartCount')) : 0;
+  const badge = document.getElementById('cartBadge');
+  if(cartCount > 0){ 
+    badge.style.display = 'inline-block'; 
+    badge.innerText = cartCount; 
+  }
+
+  function addToCart(name, price){
+    // Get existing cart items or empty array
+    let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Add new item to cartItems
+    cartItems.push({name: name, price: price, img: img});
+
+    // Save updated cart to localStorage
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+
+    // Update cart count
+    cartCount = cartItems.length;
+    localStorage.setItem('cartCount', cartCount);
+
+    // Update badge
+    badge.style.display = 'inline-block';
+    badge.innerText = cartCount;
+
+    alert(`${name} (₹${price}) added to cart!`);
+  }
+</script>
+
+
+</body>
+</html>
