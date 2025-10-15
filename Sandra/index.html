@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EventMaster - Professional Event Management System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', 'Montserrat', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
+      color: #222e44;
+      background: #0a0e17;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1240px;
+      margin: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Animated Background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.25) 0%, transparent 60%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.13) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.08) 0%, transparent 50%);
+      animation: backgroundShift 20s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    @keyframes backgroundShift {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.08) rotate(1deg); }
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(14, 18, 34, 0.93);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 18px 0;
+      z-index: 1000;
+      transition: all 0.3s cubic-bezier(.5,0,.1,1);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 30px;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-family: 'Montserrat', 'Inter', sans-serif;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      color: #fff;
+      text-decoration: none;
+      background: linear-gradient(45deg, #667eea, #764ba2 60%, #4ecdc4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transition: filter 0.2s;
+      filter: brightness(1.1) drop-shadow(0 2px 16px #764ba260);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+      font-family: 'Montserrat', 'Inter', sans-serif;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.84);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.08rem;
+      letter-spacing: .5px;
+      transition: all 0.28s cubic-bezier(.5,0,.1,1);
+      position: relative;
+      padding: 2px 0;
+    }
+
+    .nav-links a:hover {
+      color: #667eea;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 2.5px;
+      background: linear-gradient(90deg, #764ba2, #667eea);
+      transition: width 0.28s cubic-bezier(.5,0,.1,1);
+      border-radius: 4px;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: linear-gradient(135deg, 
+        rgba(102, 126, 234, 0.10) 0%, 
+        rgba(118, 75, 162, 0.11) 50%,
+        rgba(255, 107, 107, 0.07) 100%);
+      padding: 140px 20px 80px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero h1 {
+      font-size: 3.7rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 23px;
+      line-height: 1.1;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.23);
+      letter-spacing: -0.02em;
+      font-family: 'Montserrat', 'Inter', sans-serif;
+    }
+
+    .hero .highlight {
+      background: linear-gradient(45deg, #667eea, #764ba2 60%, #ff6b6b, #4ecdc4 92%);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 4s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .hero p {
+      font-size: 1.32rem;
+      color: rgba(235, 235, 255, 0.94);
+      margin-bottom: 42px;
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+      font-weight: 500;
+      font-family: 'Inter', 'Montserrat', sans-serif;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      padding: 18px 38px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-family: 'Montserrat', 'Inter', sans-serif;
+      font-size: 1.13rem;
+      transition: all 0.23s cubic-bezier(.5,0,.1,1);
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      border: 2px solid transparent;
+      box-shadow: 0 2px 16px rgba(102, 126, 234, 0.08);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.19), transparent);
+      transition: left 0.5s cubic-bezier(.5,0,.1,1);
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn.primary {
+      background: linear-gradient(45deg, #667eea, #764ba2 60%, #4ecdc4 100%);
+      color: white;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.14);
+    }
+
+    .btn.primary:hover {
+      transform: translateY(-2.5px) scale(1.03);
+      box-shadow: 0 15px 42px rgba(102, 126, 234, 0.23);
+      filter: brightness(1.08);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255, 255, 255, 0.21);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(255, 255, 255, 0.38);
+      transform: translateY(-2.5px) scale(1.03);
+      filter: brightness(1.14);
+    }
+
+    /* Stats Section */
+    .stats-section {
+      padding: 80px 0 80px;
+      background: rgba(102, 126, 234, 0.08);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 36px 0 rgba(102, 126, 234, 0.05);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 44px;
+      text-align: center;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .stat-item {
+      color: white;
+      background: linear-gradient(120deg, rgba(102, 126, 234, 0.09) 0%, rgba(76, 205, 196, 0.06) 100%);
+      border-radius: 16px;
+      box-shadow: 0 2px 20px 0 rgba(102, 126, 234, 0.10);
+      padding: 36px 10px 28px 10px;
+      transition: transform 0.2s cubic-bezier(.5,0,.1,1), box-shadow 0.2s cubic-bezier(.5,0,.1,1);
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-item:hover, .stat-item:focus {
+      transform: translateY(-6px) scale(1.04);
+      box-shadow: 0 10px 30px 0 rgba(0,122,255,0.17);
+    }
+
+    .stat-number {
+      font-size: 2.7rem;
+      font-weight: 800;
+      background: linear-gradient(45deg, #667eea, #764ba2 60%, #4ecdc4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 11px;
+      display: block;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0.5px 0 #e9f3ff, 0 2px 8px rgba(0, 122, 255, 0.07);
+    }
+
+    .stat-label {
+      font-size: 1.13rem;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 600;
+      letter-spacing: 0.7px;
+    }
+
+    /* Features Section */
+    .features-section {
+      padding: 115px 0 120px;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+      position: relative;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 78px;
+    }
+
+    .section-title h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 19px;
+      position: relative;
+      display: inline-block;
+      font-family: 'Montserrat', 'Inter', sans-serif;
+    }
+
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -11px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(45deg, #667eea, #764ba2 60%, #4ecdc4 100%);
+      border-radius: 2px;
+    }
+
+    .section-title p {
+      font-size: 1.18rem;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 600px;
+      margin: 0 auto;
+      font-weight: 500;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 38px;
+      margin-top: 62px;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(18px);
+      border: 1.5px solid rgba(255, 255, 255, 0.13);
+      padding: 44px 38px 36px 38px;
+      border-radius: 21px;
+      transition: all 0.35s cubic-bezier(.5,0,.1,1);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 2px 20px 0 rgba(102, 126, 234, 0.08);
+      z-index: 1;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3.5px;
+      background: linear-gradient(90deg, #667eea, #764ba2 60%, #ff6b6b, #4ecdc4 100%);
+      background-size: 300% 100%;
+      animation: gradientShift 6s ease infinite;
+      z-index: 0;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px) scale(1.025);
+      background: rgba(255, 255, 255, 0.10);
+      border-color: rgba(255, 255, 255, 0.21);
+      box-shadow: 0 18px 50px rgba(102, 126, 234, 0.15);
+      filter: brightness(1.04);
+    }
+
+    .feature-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #667eea, #764ba2 60%, #4ecdc4 100%);
+      color: white;
+      font-size: 2.3rem;
+      margin-bottom: 29px;
+      box-shadow: 0 8px 28px rgba(102, 126, 234, 0.23);
+      z-index: 1;
+      position: relative;
+    }
+
+    .feature-card h3 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 13px;
+      letter-spacing: 0.5px;
+      z-index: 1;
+      position: relative;
+      font-family: 'Montserrat', 'Inter', sans-serif;
+    }
+
+    .feature-card p {
+      color: rgba(255, 255, 255, 0.84);
+      line-height: 1.7;
+      font-size: 1.07rem;
+      font-weight: 500;
+      z-index: 1;
+      position: relative;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 100px 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.085) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(359deg); }
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 10;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      font-family: 'Montserrat', 'Inter', sans-serif;
+    }
+
+    .cta-section p {
+      font-size: 1.18rem;
+      color: rgba(255, 255, 255, 0.93);
+      margin-bottom: 42px;
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 500;
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    footer {
+      background: #0a0a0a;
+      color: rgba(255, 255, 255, 0.88);
+      padding: 64px 0 32px;
+      border-top: 1.5px solid rgba(255, 255, 255, 0.06);
+      font-family: 'Inter', 'Montserrat', sans-serif;
+      box-shadow: 0 -2px 18px rgba(76, 205, 196, 0.03);
+      position: relative;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 44px;
+      margin-bottom: 38px;
+      max-width: 1050px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer-section h3 {
+      color: white;
+      font-size: 1.13rem;
+      font-weight: 700;
+      margin-bottom: 17px;
+      font-family: 'Montserrat', 'Inter', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: rgba(255, 255, 255, 0.74);
+      text-decoration: none;
+      line-height: 1.8;
+      transition: color 0.24s cubic-bezier(.5,0,.1,1);
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
+
+    .footer-section a:hover {
+      color: #667eea;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 31px;
+      border-top: 1.5px solid rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.64);
+      font-size: 0.98rem;
+      font-weight: 600;
+      font-family: 'Inter', 'Montserrat', sans-serif;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(48px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-in {
+      animation: fadeInUp 0.8s ease-out forwards;
+      opacity: 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1100px) {
+      .container {
+        max-width: 97vw;
+      }
+      .features-grid {
+        max-width: 100vw;
+      }
+      .stats-grid {
+        max-width: 100vw;
+      }
+      .footer-content {
+        max-width: 99vw;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      .cta-section h2 {
+        font-size: 2rem;
+      }
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        display: none;
+      }
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+      .features-section {
+        padding: 68px 0 68px;
+      }
+      .cta-section {
+        padding: 60px 0;
+      }
+      .features-grid {
+        gap: 18px;
+      }
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+      .stat-item {
+        padding: 19px 6px 14px 6px;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="logo">EventMaster</a>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Welcome to <span class="highlight">EventMaster</span></h1>
+        <p>Your ultimate solution for managing events seamlessly. From intimate gatherings to large-scale conferences, we make event planning effortless and extraordinary.</p>
+        <div class="cta-buttons">
+          <a href="login.html" class="btn primary">
+            <span>🚀</span>
+            <span>Get Started</span>
+          </a>
+          <a href="signup.html" class="btn secondary">
+            <span>✨</span>
+            <span>Sign Up Free</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number">10K+</span>
+          <span class="stat-label">Events Created</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">50K+</span>
+          <span class="stat-label">Happy Users</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">500+</span>
+          <span class="stat-label">Vendors Connected</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">99.9%</span>
+          <span class="stat-label">Uptime</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features-section" id="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>Powerful Features</h2>
+        <p>Everything you need to create, manage, and execute successful events all in one comprehensive platform.</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card animate-in">
+          <div class="feature-icon">📅</div>
+          <h3>Smart Planning & Scheduling</h3>
+          <p>Organize every detail from timeline to execution with our intuitive planning tools. Set milestones, track progress, and never miss a deadline.</p>
+        </div>
+        
+        <div class="feature-card animate-in">
+          <div class="feature-icon">💰</div>
+          <h3>Advanced Budget Management</h3>
+          <p>Track costs, allocate resources, and control expenses efficiently with real-time budget monitoring and detailed financial reports.</p>
+        </div>
+        
+        <div class="feature-card animate-in">
+          <div class="feature-icon">🤝</div>
+          <h3>Vendor Coordination Hub</h3>
+          <p>Manage caterers, decorators, and other suppliers all in one place. Streamline communication and track vendor performance.</p>
+        </div>
+        
+        <div class="feature-card animate-in">
+          <div class="feature-icon">🎫</div>
+          <h3>Seamless Registration</h3>
+          <p>Let attendees register easily with customizable forms, automated confirmations, and integrated ticketing options.</p>
+        </div>
+        
+        <div class="feature-card animate-in">
+          <div class="feature-icon">📢</div>
+          <h3>Marketing & Promotion</h3>
+          <p>Promote your events via email campaigns, social media integration, and branded landing pages to maximize attendance.</p>
+        </div>
+        
+        <div class="feature-card animate-in">
+          <div class="feature-icon">📊</div>
+          <h3>Real-time Analytics</h3>
+          <p>Track registrations, attendance, engagement metrics, and event success with comprehensive analytics and insights.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Create Amazing Events?</h2>
+        <p>Join thousands of event professionals who trust EventMaster to bring their visions to life. Start your free trial today!</p>
+        <div class="cta-buttons">
+          <a href="signup.html" class="btn primary">
+            <span>🎯</span>
+            <span>Start Free Trial</span>
+          </a>
+          <a href="#features" class="btn secondary">
+            <span>📖</span>
+            <span>Learn More</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>EventMaster</h3>
+          <p>The world's leading event management platform, trusted by professionals worldwide to create extraordinary experiences.</p>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <p><a href="#features">Features</a></p>
+          <p><a href="login.html">Login</a></p>
+          <p><a href="signup.html">Sign Up</a></p>
+          <p><a href="#contact">Contact</a></p>
+        </div>
+        <div class="footer-section">
+          <h3>Support</h3>
+          <p><a href="#">Help Center</a></p>
+          <p><a href="#">Documentation</a></p>
+          <p><a href="#">Community</a></p>
+          <p><a href="#">Status</a></p>
+        </div>
+        <div class="footer-section">
+          <h3>Connect</h3>
+          <p><a href="#">Twitter</a></p>
+          <p><a href="#">LinkedIn</a></p>
+          <p><a href="#">Facebook</a></p>
+          <p><a href="#">Instagram</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 EventMaster. All rights reserved. | Building exceptional event experiences worldwide.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Animate elements on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationDelay = '0.2s';
+          entry.target.classList.add('animate-in');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all feature cards
+    document.querySelectorAll('.feature-card').forEach(card => {
+      observer.observe(card);
+    });
+
+    // Add scroll effect to navigation
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 100) {
+        nav.style.background = 'rgba(10, 10, 15, 0.99)';
+        nav.style.boxShadow = '0 5px 30px rgba(0, 0, 0, 0.22)';
+      } else {
+        nav.style.background = 'rgba(14, 18, 34, 0.93)';
+        nav.style.boxShadow = 'none';
+      }
+    });
+
+    // Counter animation for stats
+    function animateCounter(element, target) {
+      let current = 0;
+      const increment = target / 100;
+      const original = element.textContent;
+      const plus = original.includes('+');
+      const percent = original.includes('%');
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = target + (plus ? '+' : '') + (percent ? '%' : '');
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(current) + (plus ? '+' : '') + (percent ? '%' : '');
+        }
+      }, 18);
+    }
+
+    // Trigger counter animation when stats section is visible
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const statNumbers = entry.target.querySelectorAll('.stat-number');
+          statNumbers.forEach(stat => {
+            const text = stat.textContent;
+            let target = parseFloat(text.replace(/[^\d.]/g, ''));
+            if (text.includes('K')) target *= 1000;
+            animateCounter(stat, target);
+          });
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) {
+      statsObserver.observe(statsSection);
+    }
+  </script>
+</body>
+</html>

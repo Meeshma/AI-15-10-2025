@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About - EventMaster</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+      z-index: 0;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      letter-spacing: -0.02em;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+      border-radius: 2px;
+    }
+
+    main {
+      flex: 1;
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 30px;
+      position: relative;
+      z-index: 10;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .content-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 60px 50px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea, #764ba2, #ff6b6b, #4ecdc4);
+      background-size: 300% 100%;
+      animation: gradientShift 8s ease infinite;
+    }
+
+    h2 {
+      color: #2d3748;
+      margin-bottom: 30px;
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      border-radius: 2px;
+    }
+
+    .feature-grid {
+      display: grid;
+      gap: 30px;
+      margin: 40px 0;
+    }
+
+    .feature-item {
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      padding: 30px;
+      border-radius: 16px;
+      border-left: 4px solid #667eea;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .feature-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      border-left-color: #764ba2;
+    }
+
+    .feature-item:hover::before {
+      opacity: 1;
+    }
+
+    .feature-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border-radius: 12px;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .feature-item h3 {
+      color: #2d3748;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .feature-item p {
+      color: #4a5568;
+      line-height: 1.6;
+      font-size: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .intro-text {
+      font-size: 1.2rem;
+      color: #4a5568;
+      line-height: 1.8;
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+
+    .back-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 40px auto 0;
+      padding: 15px 30px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .back-home::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .back-home:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+    }
+
+    .back-home:hover::before {
+      left: 100%;
+    }
+
+    .back-home-container {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    footer {
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(20px);
+      color: rgba(255, 255, 255, 0.9);
+      padding: 25px 0;
+      text-align: center;
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 10;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      
+      main {
+        margin: 30px auto;
+        padding: 0 20px;
+      }
+      
+      .content-card {
+        padding: 40px 30px;
+        border-radius: 20px;
+      }
+      
+      h2 {
+        font-size: 1.8rem;
+      }
+      
+      .feature-item {
+        padding: 25px;
+      }
+      
+      .intro-text {
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 20px 0;
+      }
+      
+      header h1 {
+        font-size: 1.8rem;
+      }
+      
+      .content-card {
+        padding: 30px 20px;
+        margin: 0 10px;
+      }
+      
+      h2 {
+        font-size: 1.6rem;
+      }
+      
+      .back-home {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>About EventMaster</h1>
+  </header>
+  
+  <main>
+    <div class="content-card">
+      <h2>What is EventMaster?</h2>
+      
+      <p class="intro-text">
+        EventMaster is a comprehensive event management system designed to help individuals, teams, and organizations seamlessly plan and manage events of any size. From intimate gatherings to large-scale conferences, we've got you covered.
+      </p>
+
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon">📅</div>
+          <h3>Event Creation & Tracking</h3>
+          <p>Effortlessly create, schedule, and track events with our intuitive interface. Keep everything organized with detailed event timelines and milestone tracking.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">🤝</div>
+          <h3>Vendor Management</h3>
+          <p>Streamline your vendor relationships with integrated contact management, contract tracking, and payment scheduling all in one place.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">📊</div>
+          <h3>Real-time Analytics</h3>
+          <p>Make data-driven decisions with comprehensive analytics and reporting tools that provide insights into your event performance and attendee engagement.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">⚙️</div>
+          <h3>Customizable Settings</h3>
+          <p>Tailor the platform to your specific needs with flexible user settings, custom workflows, and personalized dashboard configurations.</p>
+        </div>
+      </div>
+
+      <p class="intro-text" style="margin-top: 40px; margin-bottom: 0;">
+        Built with modern technology and a focus on usability, EventMaster is your all-in-one solution for organizing unforgettable events. Join thousands of event professionals who trust EventMaster to bring their visions to life.
+      </p>
+
+      <div class="back-home-container">
+        <a class="back-home" href="home.html">
+          <span>←</span>
+          <span>Back to Dashboard</span>
+        </a>
+      </div>
+    </div>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 EventMaster. All rights reserved. | Empowering events worldwide</p>
+  </footer>
+</body>
+</html>

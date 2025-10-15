@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard - Dream Weaver Events</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: url("background.jpg") no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+      z-index: 0;
+    }
+
+    header {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 25px 0;
+      position: relative;
+      z-index: 10;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      letter-spacing: -0.02em;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .user-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .user-name {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .user-role {
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    main {
+      flex: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 30px;
+      width: 100%;
+      position: relative;
+      z-index: 10;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .welcome-section {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .welcome-title {
+      font-size: 3rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 15px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      letter-spacing: -0.02em;
+    }
+
+    .welcome-subtitle {
+      font-size: 1.3rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-bottom: 60px;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 30px 25px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .stat-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #2d3748;
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+
+    .stat-label {
+      color: #4a5568;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-bottom: 50px;
+    }
+
+    .nav-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 35px 30px;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--card-color-1, #667eea), var(--card-color-2, #764ba2));
+    }
+
+    .nav-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .nav-card:nth-child(1) {
+      --card-color-1: #667eea;
+      --card-color-2: #764ba2;
+    }
+
+    .nav-card:nth-child(2) {
+      --card-color-1: #ff6b6b;
+      --card-color-2: #ee5a52;
+    }
+
+    .nav-card:nth-child(3) {
+      --card-color-1: #4ecdc4;
+      --card-color-2: #44a08d;
+    }
+
+    .nav-card:nth-child(4) {
+      --card-color-1: #45b7d1;
+      --card-color-2: #96c93d;
+    }
+
+    .nav-card:nth-child(5) {
+      --card-color-1: #f093fb;
+      --card-color-2: #f5576c;
+    }
+
+    .nav-card:nth-child(6) {
+      --card-color-1: #4facfe;
+      --card-color-2: #00f2fe;
+    }
+
+    .nav-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--card-color-1, #667eea), var(--card-color-2, #764ba2));
+      color: white;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    }
+
+    .nav-content {
+      flex: 1;
+    }
+
+    .nav-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #2d3748;
+      margin-bottom: 5px;
+    }
+
+    .nav-description {
+      color: #4a5568;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .quick-actions {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 40px 35px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+
+    .quick-actions::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #667eea, #764ba2, #ff6b6b, #4ecdc4);
+      background-size: 300% 100%;
+      animation: gradientShift 8s ease infinite;
+    }
+
+    .quick-actions-title {
+      color: #2d3748;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .quick-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .quick-btn {
+      padding: 12px 25px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    }
+
+    .quick-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+      text-decoration: none;
+      color: white;
+    }
+
+    .logout-section {
+      text-align: center;
+    }
+
+    .logout-btn {
+      padding: 15px 35px;
+      background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logout-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+    }
+
+    footer {
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(20px);
+      color: rgba(255, 255, 255, 0.9);
+      padding: 25px 0;
+      text-align: center;
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 10;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.8;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-content {
+        padding: 0 20px;
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+      
+      .logo {
+        font-size: 1.8rem;
+      }
+      
+      main {
+        padding: 40px 20px;
+      }
+      
+      .welcome-title {
+        font-size: 2.2rem;
+      }
+      
+      .welcome-subtitle {
+        font-size: 1.1rem;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+      
+      .stat-card {
+        padding: 25px 20px;
+      }
+      
+      .nav-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .nav-card {
+        padding: 25px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .welcome-title {
+        font-size: 2rem;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .quick-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .quick-btn {
+        width: 200px;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="logo">Dream Weaver Events</div>
+      <div class="user-info">
+        <div class="user-avatar">JD</div>
+        <div class="user-details">
+          <div class="user-name">John Doe</div>
+          <div class="user-role">Event Organizer</div>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <main>
+    <div class="welcome-section">
+      <h1 class="welcome-title">Welcome back, John! 👋</h1>
+      <p class="welcome-subtitle">
+        Ready to create amazing events? Your dashboard is here to help you manage everything seamlessly.
+      </p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">📅</div>
+        <div class="stat-number">12</div>
+        <div class="stat-label">Active Events</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">👥</div>
+        <div class="stat-number">1,248</div>
+        <div class="stat-label">Total Attendees</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🤝</div>
+        <div class="stat-number">23</div>
+        <div class="stat-label">Vendors</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">✅</div>
+        <div class="stat-number">45</div>
+        <div class="stat-label">Completed Events</div>
+      </div>
+    </div>
+
+    <div class="nav-grid">
+      <a href="create-event.html" class="nav-card">
+        <div class="nav-icon">➕</div>
+        <div class="nav-content">
+          <div class="nav-title">Create New Event</div>
+          <div class="nav-description">Start planning your next amazing event with our intuitive event builder</div>
+        </div>
+      </a>
+
+      <a href="view-event.html" class="nav-card">
+        <div class="nav-icon">📋</div>
+        <div class="nav-content">
+          <div class="nav-title">View My Events</div>
+          <div class="nav-description">Browse, edit, and manage all your upcoming and past events</div>
+        </div>
+      </a>
+
+      <a href="manage-vendors.html" class="nav-card">
+        <div class="nav-icon">🏪</div>
+        <div class="nav-content">
+          <div class="nav-title">Manage Vendors</div>
+          <div class="nav-description">Organize your vendor relationships and track contracts</div>
+        </div>
+      </a>
+
+      <a href="view-analytics.html" class="nav-card">
+        <div class="nav-content">
+          <div class="nav-title">View Analytics</div>
+          <div class="nav-description">Get insights into your event performance and attendee engagement</div>
+        </div>
+      </a>
+
+      <a href="account-settings.html" class="nav-card">
+        <div class="nav-icon">⚙️</div>
+        <div class="nav-content">
+          <div class="nav-title">Account Settings</div>
+          <div class="nav-description">Update your profile, preferences, and security settings</div>
+        </div>
+      </a>
+
+      <a href="about.html" class="nav-card">
+        <div class="nav-icon">ℹ️</div>
+        <div class="nav-content">
+          <div class="nav-title">About Dream Weaver Events</div>
+          <div class="nav-description">Learn more about our platform and latest features</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="quick-actions">
+      <h3 class="quick-actions-title">⚡ Quick Actions</h3>
+      <div class="quick-buttons">
+        <a href="create-event.html" class="quick-btn">
+          <span>🎯</span>
+          <span>Quick Event</span>
+        </a>
+        <a href="view-event.html" class="quick-btn">
+          <span>🔍</span>
+          <span>Find Event</span>
+        </a>
+        <a href="view-analytics.html" class="quick-btn">
+          <span>📈</span>
+          <span>View Stats</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="logout-section">
+      <button class="logout-btn" onclick="logout()">
+        <span>🚪</span>
+        <span>Logout</span>
+      </button>
+    </div>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 Dream Weaver Events. All rights reserved. | Building exceptional event experiences</p>
+  </footer>
+
+  <script>
+    function logout() {
+      if (confirm('Are you sure you want to logout?')) {
+        document.body.style.opacity = '0.5';
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 500);
+      }  
+    }
+
+    window.addEventListener('load', function() {
+      const cards = document.querySelectorAll('.stat-card, .nav-card');
+      cards.forEach((card, index) => {
+        card.style.animationDelay = `${0.1 * index}s`;
+        card.style.animation = 'fadeInUp 0.6s ease-out both';
+      });
+    });
+
+    function updateTime() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+      // Optional: display time if needed
+    }
+
+    updateTime();
+    setInterval(updateTime, 60000);
+  </script>
+</body>
+</html>
+
